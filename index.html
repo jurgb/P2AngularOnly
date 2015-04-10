@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>My perfect Destination</title>
    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
     <link rel="stylesheet" href="./assets/css/style.css">
 	
@@ -17,21 +17,17 @@
                 </button>
                 <h1 class="md-toolbar-tools titelmpd" hide-sm>My perfect destination</h1>
             <div flex class="md-toolbar-tools" layout="row" layout-align="end">
-                <div role="presentation" class="dropdown nav-components">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)" role="button" aria-expanded="false">
-                    <ul class="profile_banner_list">
-                        <li><span class="profilepicwrapper"><img class="profilepic" src="./assets/images/proflepics/me.png" alt="profile picture of Jurgen Barbier"></span> 
-                        </li>
-                        <li class="space5">
-                            Jurgen Barbier <span class="caret"></span>
-                        </li>
-                    </ul></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">My profile</a></li>
-                        <li><a href="#">Messages <span class="badge">3</span></a></li>
-                        <li><a href="/logout">Logout</a></li>
-                    </ul>
-                </div>  
+                                   
+                    <span class="profilepicwrapper">
+                        <img class="profilepic" src="./assets/images/proflepics/me.png" alt="profile picture of Jurgen Barbier">
+                    </span>
+                    <a class="menulink" href="">
+                    Jurgen Barbier
+                </a>
+
+                <a class="menulink" href="">
+                    <img class="logoutbutton" src="./assets/images/icons/logout.svg" alt="">
+                </a>
             </div>          
         </md-toolbar>
         <div flex layout="row">
@@ -47,7 +43,7 @@
                     </md-item>
                 </md-list>
             </md-sidenav>
-            <md-content layout="column" flex  ng-repeat="dest in dests | filter:{ id : selected.id}">
+            <md-content layout="column" flex  >
                 <div id="banner" layout="Row">
                     <div flex-sm="60" flex-md="50" flex-gt-md="70" class="location">
                         <img class="svg-small" src="./assets/images/icons/geo.svg" alt="">
@@ -68,7 +64,30 @@
                     </div>
                 </div>
                 <div>
-                    <h2><% dest.name %></h2>
+                    <h2><% selected.name %> vacations</h2>
+                    <md-list ng-repeat="dest in dests | filter:{ id : selected.id}">
+                        <md-item>
+                            <md-item-content>
+                                <div class="onedestination">
+                                    <img src="./assets/images/berlin.jpeg" alt="">
+                                    <div class="dest_info">
+                                        <span layout="column">
+                                            <p><% dest.name %></p>
+                                            <p><% dest.id%></p>
+                                        </span>
+                                        <span class="matchperc">
+                                            <p>78% match</p>
+                                            <md-progress-circular class="md-primary md-hue-1" md-mode="determinate" value="78"></md-progress-circular>
+                                        </span>
+                                       
+                                    </div>
+                                </div>
+                                
+                            </md-item-content>
+                        </md-item>
+                    </md-list>
+                       
+
                 </div>
             </md-content>
         </div>
@@ -79,9 +98,7 @@
     <script src="./bower_components/angular-aria/angular-aria.js"></script>
     <script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script>
 
-    <!--bootstrap js-->
-    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
     
     <!--All scripts related to angular app-->
     <script src="./src/app.js"></script>
