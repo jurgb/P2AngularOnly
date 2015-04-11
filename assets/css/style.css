@@ -115,7 +115,7 @@ https://github.com/google/material-design-icons
 /* Content */
 .location
 {
-    padding-top: 160px;
+    padding-bottom: 10px;
     padding-left: 15px;
     color: #fff;
 }
@@ -138,10 +138,11 @@ https://github.com/google/material-design-icons
 {
     color: #eeedee;
     font-size: 10px;
+    margin-left: 5px;
 }
 #banner
 {
-    height: 400px;
+
     background-image: url("../images/berlin.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -160,3 +161,23 @@ https://github.com/google/material-design-icons
     background-color: rgba(109,198,169,0.6);
 }
 /* end Content */
+
+.dest_img
+{
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.matchperctext
+{
+    color: #48bebc;
+    width: 80px;
+    text-align: center;
+    line-height: 20px;
+    padding-left: 8px;
+}
+md-progress-circular
+{
+    margin-top: -60px;
+    margin-left: 8px;
+}

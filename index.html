@@ -43,19 +43,19 @@
                     </md-item>
                 </md-list>
             </md-sidenav>
-            <md-content layout="column" flex  >
+            <md-content layout="column" flex>
                 <div id="banner" layout="Row">
-                    <div flex-sm="60" flex-md="50" flex-gt-md="70" class="location">
+                    <div layout="row" layout-align="start end" flex-sm="60" flex-md="50" flex-gt-md="70" class="location">
                         <img class="svg-small" src="./assets/images/icons/geo.svg" alt="">
                         Berlin
                         <span class="small-text">Germany, Europe</span>
                     </div>
-                    <div flex-sm="20" flex-md="25" flex-gt-md="15" class="besttime">
+                    <div layout="column" layout-align="center center" flex-sm="20" flex-md="25" flex-gt-md="15" class="besttime">
                         <img class="svg-md promo-img" src="./assets/images/icons/today.svg" alt="">
                         Best time to visit
                         <h2>March</h2>
                     </div>
-                    <div flex-sm="20" flex-md="25" flex-gt-md="15" class="cheapestticket">
+                    <div layout="column" layout-align="center center" flex-sm="20" flex-md="25" flex-gt-md="15" class="cheapestticket">
                         <img class="svg-md promo-img" src="./assets/images/icons/cheap.svg" alt="">
                         Average cost
                         <h2>€250</h2>
@@ -63,30 +63,30 @@
                         per night
                     </div>
                 </div>
-                <div>
+                <div layout-padding>
                     <h2><% selected.name %> vacations</h2>
-                    <md-list ng-repeat="dest in dests | filter:{ id : selected.id}">
+                    <div layout="row" layout-wrap>
+                    <md-list id="destinationlist"  ng-repeat="dest in dests | filter:{ id : selected.id}">
                         <md-item>
                             <md-item-content>
-                                <div class="onedestination">
-                                    <img src="./assets/images/berlin.jpeg" alt="">
-                                    <div class="dest_info">
-                                        <span layout="column">
-                                            <p><% dest.name %></p>
-                                            <p><% dest.id%></p>
+                               <md-card>
+                                     <img class="dest_img" src="./assets/images/destinations/berlin.jpeg" alt="">
+                                 <md-card-content layout="row" >
+                                       <span flex layout="row" layout-align="start center">
+                                            <% dest.name %>
+                                            <% dest.id%>
                                         </span>
-                                        <span class="matchperc">
-                                            <p>78% match</p>
-                                            <md-progress-circular class="md-primary md-hue-1" md-mode="determinate" value="78"></md-progress-circular>
+                                        <span layout="column" layout-align="end center" class="matchperc">
+                                            <p class="matchperctext"><% dest.match %>% match</p>
+                                            <md-progress-circular md-diameter="70" class="md-primary md-hue-1" md-mode="determinate" value="78"></md-progress-circular>
                                         </span>
-                                       
-                                    </div>
-                                </div>
+                                 </md-card-content>
+                                </md-card>
                                 
                             </md-item-content>
                         </md-item>
                     </md-list>
-                       
+                    </div>
 
                 </div>
             </md-content>
