@@ -57,13 +57,11 @@ https://github.com/google/material-design-icons
         overflow: hidden;
         display:inline-block;
     }
-    .username
-    {
+     .borderleft{
+        border-left: 1px rgba(72,190,188,0.7) solid;
+        padding-left: 10px;
+     }
 
-
-        display: inline-block;
-        margin-left: 5px;
-    }
     .logoutbutton
     {   
         display: inline-block;
@@ -77,8 +75,8 @@ https://github.com/google/material-design-icons
     a.menulink:active
     {
         display: inline-block;
-        margin-left: 5px;
-        margin-right: 15px;
+        margin-right: 10px;
+
     }
     a:hover
     {

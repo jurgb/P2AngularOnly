@@ -1,28 +1,28 @@
 app.service('muppetService', ['$q', function($q) {
   var muppets = [{
       id:'1',
-      name: 'Car',
+      name: 'Car vacations',
       iconurl: './assets/images/icons/car.svg'
   }, {
       id:'4',
-      name: 'Ski',
+      name: 'Ski vacations',
       iconurl: './assets/images/icons/ski.svg'
   }, {
       id:'3',
-      name: 'Sun',
+      name: 'Sun vacations',
       iconurl: './assets/images/icons/sun.svg'
   }, {
       id:'2',
-      name: 'Fly',
+      name: 'Fly vacations',
       iconurl: './assets/images/icons/plane.svg'
   }, {
       id:'5',
-      name: 'cruise',
-      iconurl: './assets/images/icons/sun.svg'
+      name: 'cruise vacations',
+      iconurl: './assets/images/icons/cruise.svg'
   }, {
       id:'6',
       name: 'Citytrips',
-      iconurl: './assets/images/icons/sun.svg'
+      iconurl: './assets/images/icons/city.svg'
   }];
 
   // Promise-based API

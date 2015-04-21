@@ -8,12 +8,17 @@ app.config(function($routeProvider, $mdThemingProvider) {
         .when('/',
             {
                 controller: 'AppCtrl',
-                templateUrl: './views/destinations.html'
+                templateUrl: './views/login.html'
             })
-        .when('/login',
+        .when('/app',
             {
                 controller: 'AppCtrl',
-                templateUrl: './views/login.html'
+                templateUrl: './views/destinations.html'
+            })
+        .when('/profile',
+            {
+                controller: 'AppCtrl',
+                templateUrl: './views/profile.html'
             })
         //Define a route that has a route parameter in it (:customerID)
         .when('/edit/:TodID',

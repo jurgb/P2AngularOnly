@@ -13,30 +13,8 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 	
 </head>
-<body layout="column">
-   <md-toolbar layout="row">
-                <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
-                    <span class="visuallyhidden">Menu</span>
-                </button>
-                <h1 class="md-toolbar-tools titelmpd" hide-sm>My perfect destination</h1>
-            <div flex class="md-toolbar-tools" layout="row" layout-align="end">
-                   <a class="menulink" href="#/">Home</a>                
-                    <span class="profilepicwrapper">
-                        <img class="profilepic" src="./assets/images/proflepics/me.png" alt="profile picture of Jurgen Barbier">
-                    </span>
-                    <a class="menulink" href="">
-                    Jurgen Barbier
-                </a>
+<body layout="column" ng-view>
 
-                <a class="menulink" href="">
-                    <img class="logoutbutton" src="./assets/images/icons/logout.svg" alt="">
-                </a>
-            </div>          
-        </md-toolbar>
-    <div layout="row" flex ng-view>
-        
-    </div>
-        
     
     <!-- Angular Material Dependencies -->
     <script src="./bower_components/angular/angular.js"></script>
