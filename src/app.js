@@ -8,17 +8,17 @@ app.config(function($routeProvider, $mdThemingProvider) {
         .when('/',
             {
                 controller: 'AppCtrl',
-                templateUrl: './views/login.php'
+                templateUrl: './views/login.html'
             })
         .when('/app',
             {
                 controller: 'AppCtrl',
-                templateUrl: './views/destinations.php'
+                templateUrl: './views/destinations.html'
             })
         .when('/profile',
             {
-                controller: 'AngAPIController',
-                templateUrl: './views/profile.php'
+                controller: 'AppCtrl',
+                templateUrl: './views/profile.html'
             })
         //Define a route that has a route parameter in it (:customerID)
         .when('/edit/:TodID',
@@ -38,9 +38,9 @@ app.config(function($routeProvider, $mdThemingProvider) {
         '700': 'd32f2f',
         '800': 'c62828',
         '900': 'b71c1c',
-        'A100': 'ff8a80',
-        'A200': 'ff5252',
-        'A400': 'ff1744',
+        'A100': '48bebc',
+        'A200': '131921',
+        'A400': 'efefef',
         'A700': 'd50000',
         'contrastDefaultColor': 'light',    // whether, by default, text (contrast)
                                             // on this palette should be dark or light

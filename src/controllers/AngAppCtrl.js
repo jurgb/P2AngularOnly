@@ -1,8 +1,11 @@
-app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'destService', '$timeout','$log', function($scope, $mdSidenav,  muppetService, destService, $timeout, $log) {
+app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'destService','APIservice', '$timeout','$log', function($scope, $mdSidenav,  muppetService, destService,APIservice, $timeout, $log) {
   var allMuppets = [];
   var allDests = [];
   var Categories = [];
-  var Departures = [];    
+  var Departures = [];
+    $scope.activitycategories = [
+        
+    ];
     
   $scope.selected = null;
   $scope.muppets = allMuppets;
@@ -39,4 +42,20 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'destService
     $scope.selected = angular.isNumber(muppet) ? $scope.muppets[muppet] : muppet;
     $scope.toggleSidenav('left');
   }
+    
+    $scope.activitycat = function(){
+      //Alle notifications binnehalen en in scope stoppen
+		APIservice.activitycat()
+			.success(function(data){
+                
+				$scope.activitycategories = data;
+
+                console.log(data);
+                
+			})
+            .error(function(){
+                console.log("fail");
+            
+            });
+    };
 }])

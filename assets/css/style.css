@@ -179,3 +179,26 @@ md-progress-circular
     margin-top: -60px;
     margin-left: 8px;
 }
+
+.formlayout
+{
+    width: 85%;
+    max-width: 600px;
+    padding: 50px;
+    background-color: rgba(255,255,255,0.8);
+}
+.homepage
+{
+    background-image: url(../images/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+.loginbutton
+{
+    max-width: 200px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-left: auto;
+}
