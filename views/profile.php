@@ -43,7 +43,8 @@
                     </md-item>
                 </md-list>
             </md-sidenav>
-            <md-content layout="column" flex>
-                Profile page
+
+            <md-content layout="column" flex ng-init="destinations()">
+                <% destinations %>
             </md-content>
         </div>

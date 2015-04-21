@@ -1,7 +1,4 @@
-<?php
-
-    header('api_key=285ag9syA6WMkVn916hw');
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" ng-app="MPDapp">
 <head>
 	<meta charset="UTF-8">
@@ -31,6 +28,6 @@
     <script src="./src/factories/AngAppAPI.js"></script>
     <script src="./src/factories/AngDestinationAPI.js"></script>
     <script src="./src/factories/AngAPIservice.js"></script>
-	
+	<script src="./src/controllers/AngAPICtrl.js"></script>
 </body>
 </html>
