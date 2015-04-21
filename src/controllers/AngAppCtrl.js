@@ -1,6 +1,8 @@
-app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'destService', '$timeout','$log', function($scope, $mdSidenav, muppetService, destService, $timeout, $log) {
+app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'destService', '$timeout','$log', function($scope, $mdSidenav,  muppetService, destService, $timeout, $log) {
   var allMuppets = [];
   var allDests = [];
+  var Categories = [];
+  var Departures = [];    
     
   $scope.selected = null;
   $scope.muppets = allMuppets;

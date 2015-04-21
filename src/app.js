@@ -1,9 +1,28 @@
-var app = angular.module('MPDapp', ['ngMaterial'], function($interpolateProvider) {
+var app = angular.module('MPDapp', ['ngMaterial', 'ngRoute'], function($interpolateProvider) {
         $interpolateProvider.startSymbol('<%');
         $interpolateProvider.endSymbol('%>');
 });
-app.config(function($mdThemingProvider) {
-    $mdThemingProvider.definePalette('mpdPalette', {
+app.config(function($routeProvider, $mdThemingProvider) {
+
+    $routeProvider
+        .when('/',
+            {
+                controller: 'AppCtrl',
+                templateUrl: './views/destinations.html'
+            })
+        .when('/login',
+            {
+                controller: 'AppCtrl',
+                templateUrl: './views/login.html'
+            })
+        //Define a route that has a route parameter in it (:customerID)
+        .when('/edit/:TodID',
+            {
+                controller: 'AngTodoController',
+                templateUrl: '/views/notificationsedit.html'
+            })
+    
+     $mdThemingProvider.definePalette('mpdPalette', {
         '50': '48bebc', // blue color (accent)
         '100': '131921', // dark blue (sidenav)
         '200': 'efefef', // grey accent
@@ -32,25 +51,4 @@ app.config(function($mdThemingProvider) {
           'hue-3': '200' // use shade A100 for the <code>md-hue-3</code> class
         })
         .accentPalette('teal');
-});
-//app.config(function($routeProvider) {
-//
-//    $routeProvider
-//        .when('/',
-//            {
-//                controller: 'AngTodoController',
-//                templateUrl: '/views/notifications.html'
-//            })
-//        .when('/new',
-//            {
-//                controller: 'AngTodoController',
-//                templateUrl: '/views/NewTodo.html'
-//            })
-//        //Define a route that has a route parameter in it (:customerID)
-//        .when('/edit/:TodID',
-//            {
-//                controller: 'AngTodoController',
-//                templateUrl: '/views/notificationsedit.html'
-//            })
-//
-//    });
+    });

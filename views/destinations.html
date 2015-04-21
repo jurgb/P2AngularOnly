@@ -1,0 +1,62 @@
+
+        <div flex layout="row">
+            <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+                <md-list layout="column" class="categorie-list">
+                    <md-item ng-repeat="it in muppets">
+                        <md-item-content>
+                            <md-button ng-click="selectMuppet(it)" ng-class="{'selected' : it === selected }">
+                                <img ng-src="<% it.iconurl %>" class="face" alt="">
+                                <% it.name %> vacations
+                            </md-button>
+                        </md-item-content>
+                    </md-item>
+                </md-list>
+            </md-sidenav>
+            <md-content layout="column" flex>
+                <div id="banner" layout="Row">
+                    <div layout="row" layout-align="start end" flex-sm="60" flex-md="50" flex-gt-md="70" class="location">
+                        <img class="svg-small" src="./assets/images/icons/geo.svg" alt="">
+                        Berlin
+                        <span class="small-text">Germany, Europe</span>
+                    </div>
+                    <div layout="column" layout-align="center center" flex-sm="20" flex-md="25" flex-gt-md="15" class="besttime">
+                        <img class="svg-md promo-img" src="./assets/images/icons/today.svg" alt="">
+                        Best time to visit
+                        <h2>March</h2>
+                    </div>
+                    <div layout="column" layout-align="center center" flex-sm="20" flex-md="25" flex-gt-md="15" class="cheapestticket">
+                        <img class="svg-md promo-img" src="./assets/images/icons/cheap.svg" alt="">
+                        Average cost
+                        <h2>€250</h2>
+                        per person
+                        per night
+                    </div>
+                </div>
+                <div layout-padding>
+                    <h2><% selected.name %> vacations</h2>
+                    <div layout="row" layout-wrap>
+                    <md-list id="destinationlist"  ng-repeat="dest in dests | filter:{ id : selected.id}">
+                        <md-item>
+                            <md-item-content>
+                               <md-card>
+                                     <img class="dest_img" src="./assets/images/destinations/berlin.jpeg" alt="">
+                                 <md-card-content layout="row" >
+                                       <span flex layout="row" layout-align="start center">
+                                            <% dest.name %>
+                                            <% dest.id%>
+                                        </span>
+                                        <span layout="column" layout-align="end center" class="matchperc">
+                                            <p class="matchperctext"><% dest.match %>% match</p>
+                                            <md-progress-circular md-diameter="70" class="md-primary md-hue-1" md-mode="determinate" value="78"></md-progress-circular>
+                                        </span>
+                                 </md-card-content>
+                                </md-card>
+                                
+                            </md-item-content>
+                        </md-item>
+                    </md-list>
+                    </div>
+
+                </div>
+            </md-content>
+        </div>
