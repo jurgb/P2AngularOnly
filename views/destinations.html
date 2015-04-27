@@ -48,8 +48,9 @@
                     </div>
                 </div>
                 <div layout-padding>
-                    <h2><% selected.name %> vacations</h2>
+                    <h2><% selected.name %></h2>
                     <div layout="row" layout-wrap>
+<!--
                     <md-list id="destinationlist"  ng-repeat="dest in dests | filter:{ id : selected.id}">
                         <md-item>
                             <md-item-content>
@@ -63,6 +64,28 @@
                                         <span layout="column" layout-align="end center" class="matchperc">
                                             <p class="matchperctext"><% dest.match %>% match</p>
                                             <md-progress-circular md-diameter="70" class="md-primary md-hue-1" md-mode="determinate" value="<% dest.match %>"></md-progress-circular>
+                                        </span>
+                                 </md-card-content>
+                                </md-card>
+                                
+                            </md-item-content>
+                        </md-item>
+                    </md-list>
+-->
+             
+                       <md-list id="destinationlist" layout="row" layout-wrap  ng-init="destinations()" >
+                        <md-item ng-repeat="dest in destinations | orderBy:'raw.sentiment':reverse='true'">
+                            <md-item-content>
+                               <md-card>
+                                     <img class="dest_img" src="<% dest.image %>" alt="">
+                                 <md-card-content style="width:100%;display:inline-block;" layout="row" >
+                                       <span style="margin-bottom:10px;margin-top:10px;display:inline-block;width:70%;" layout="column" layout-align="start center">
+                                           <span style="display:block;"><% dest.name  %></span>
+                                           <span style="display:block;"><% dest.region %></span>
+                                        </span>
+                                        <span style="margin-bottom:10px;margin-top:10px;display:inline-block;width:25%;" layout="column" class="matchperc" layout-align="end center">
+                                            <p class="matchperctext"><% dest.raw.sentiment | number:0 %>% match</p>
+                                            <md-progress-circular md-diameter="70" class="md-primary md-hue-1" md-mode="determinate" value="<% dest.raw.sentiment | number:0 %>"
                                         </span>
                                  </md-card-content>
                                 </md-card>

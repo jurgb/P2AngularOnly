@@ -17,7 +17,7 @@ app.config(function($routeProvider, $mdThemingProvider) {
             })
         .when('/profile',
             {
-                controller: 'AppCtrl',
+                controller: 'AngAPIController',
                 templateUrl: './views/profile.html'
             })
         //Define a route that has a route parameter in it (:customerID)
