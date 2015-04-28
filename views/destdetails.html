@@ -1,0 +1,50 @@
+        <md-toolbar layout="row">
+                <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
+                    <span class="visuallyhidden">Menu</span>
+                </button>
+                <h1 class="md-toolbar-tools titelmpd" hide-sm>My perfect destination</h1>
+            <div flex class="md-toolbar-tools" layout="row" layout-align="end">
+                   <a class="menulink" href="#/app">Home</a>                
+                    
+                <a class="menulink borderleft" href="#/profile">
+                    Jurgen Barbier
+                </a>
+                <span hide-sm class="profilepicwrapper">
+                        <img class="profilepic" src="./assets/images/proflepics/me.png" alt="profile picture of Jurgen Barbier">
+                    </span>
+            </div>          
+        </md-toolbar>
+        <div flex layout="row">
+            <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+                <md-list layout="column" class="categorie-list">
+                    <md-item>
+                        <md-item-content>
+                            <md-button ng-click="settab(basic)">
+                                <img ng-src="" class="face" alt="">
+                               blabla
+                            </md-button>
+                        </md-item-content>
+                    </md-item>
+                    <md-item>
+                        <md-item-content>
+                            <md-button ng-click="settab(transport)">
+                                <img ng-src="" class="face" alt="">
+                               whatever
+                            </md-button>
+                        </md-item-content>
+                    </md-item>
+                    <md-item>
+                        <md-item-content>
+                            <md-button ng-click="settab(entertainment)">
+                                <img ng-src="" class="face" alt="">
+                                shit
+                            </md-button>
+                        </md-item-content>
+                    </md-item>
+                </md-list>
+            </md-sidenav>
+
+            <md-content layout="column" flex ng-init="destinations()">
+                <% destinations %>
+            </md-content>
+        </div>

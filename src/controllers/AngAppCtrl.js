@@ -3,6 +3,7 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'destService
   var allDests = [];
   var Categories = [];
   var Departures = [];
+    $scope.loading = "true";
     $scope.activitycategories = [
         
     ];
@@ -41,6 +42,7 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'destService
   function selectMuppet(muppet) {
     $scope.selected = angular.isNumber(muppet) ? $scope.muppets[muppet] : muppet;
     $scope.toggleSidenav('left');
+   
   }
     
  $scope.activitycategories = [
@@ -76,7 +78,7 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'destService
 			.success(function(data){
                 
 				$scope.departurepoints = data;
-
+                
                 console.log(data);
                 
 			})
@@ -87,12 +89,14 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'destService
     };
     $scope.destinations = function(){
       //Alle notifications binnehalen en in scope stoppen
-		APIservice.destinations()
+        params = {'UxplrSearch[departurePoint]':'BRU','UxplrSearch[dateFrom]':'2015-07-07','UxplrSearch[dateTo]':'2015-07-14'};
+		APIservice.destinations(params)
 			.success(function(data){
                 
 				$scope.destinations = data;
 
                 console.log(data);
+            $scope.loading = false;
                 
 			})
             .error(function(){
@@ -100,4 +104,29 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'destService
             
             });
     };
+
+    $scope.carVacationFilter = function(dest)
+    {
+    // Do some tests
+
+    if(dest.distance.miles < 1500)
+    {
+        return true; // this will be listed in the results
+    }
+
+    return false; // otherwise it won't be within the results
+    };
+    
+    $scope.skiVacationFilter = function(dest)
+    {
+    // Do some tests
+
+    if(dest.distance.miles > 0)
+    {
+        return true; // this will be listed in the results
+    }
+
+    return false; // otherwise it won't be within the results
+    };
+    
 }])

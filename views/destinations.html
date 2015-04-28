@@ -47,8 +47,12 @@
                         per night
                     </div>
                 </div>
-                <div layout-padding>
+                <div layout="column" layout-padding>
                     <h2><% selected.name %></h2>
+                   
+                    <div layout="row" layout-align="space-around">
+                      <md-progress-circular ng-show="loading" id="loadgif" class="md-primary md-hue-1" md-mode="indeterminate"></md-progress-circular>
+                    </div>
                     <div layout="row" layout-wrap>
 <!--
                     <md-list id="destinationlist"  ng-repeat="dest in dests | filter:{ id : selected.id}">
@@ -72,24 +76,26 @@
                         </md-item>
                     </md-list>
 -->
-             
-                       <md-list id="destinationlist" layout="row" layout-wrap  ng-init="destinations()" >
-                        <md-item ng-repeat="dest in destinations | orderBy:'raw.sentiment':reverse='true'">
+                        
+                       <md-list id="destinationlist" layout="row" layout-wrap  ng-init="destinations()" >                        
+                        <md-item ng-repeat="dest in destinations| filter:selecteddestfilter | orderBy:'raw.sentiment':reverse='true'">
+                            
                             <md-item-content>
-                               <md-card>
+                                <a href="#/dest/<% dest.id %>">
+                               <md-card >
                                      <img class="dest_img" src="<% dest.image %>" alt="">
                                  <md-card-content style="width:100%;display:inline-block;" layout="row" >
                                        <span style="margin-bottom:10px;margin-top:10px;display:inline-block;width:70%;" layout="column" layout-align="start center">
                                            <span style="display:block;"><% dest.name  %></span>
-                                           <span style="display:block;"><% dest.region %></span>
+                                           <span style="display:block;"><% dest.distance.miles %></span>
                                         </span>
                                         <span style="margin-bottom:10px;margin-top:10px;display:inline-block;width:25%;" layout="column" class="matchperc" layout-align="end center">
                                             <p class="matchperctext"><% dest.raw.sentiment | number:0 %>% match</p>
-                                            <md-progress-circular md-diameter="70" class="md-primary md-hue-1" md-mode="determinate" value="<% dest.raw.sentiment | number:0 %>"
+                                                <md-progress-circular md-diameter="70" class="md-primary md-hue-1" md-mode="determinate" value="<% dest.raw.sentiment | number:0 %>">
                                         </span>
                                  </md-card-content>
                                 </md-card>
-                                
+                                </a>
                             </md-item-content>
                         </md-item>
                     </md-list>

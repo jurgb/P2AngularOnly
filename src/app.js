@@ -21,10 +21,10 @@ app.config(function($routeProvider, $mdThemingProvider) {
                 templateUrl: './views/profile.html'
             })
         //Define a route that has a route parameter in it (:customerID)
-        .when('/edit/:TodID',
+        .when('/dest/:destID',
             {
-                controller: 'AngTodoController',
-                templateUrl: '/views/notificationsedit.html'
+                controller: 'AppCtrl',
+                templateUrl: './views/destdetails.html'
             })
     
      $mdThemingProvider.definePalette('mpdPalette', {

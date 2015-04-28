@@ -12,9 +12,9 @@ app.factory("APIservice", function($http){
             headers: {'Api-Key': '285ag9syA6WMkVn916hw'}
         });
     };
-    APIservice.destinations = function(){
+    APIservice.destinations = function(data){
         return $http.get('http://api.uxplr.com/api/destinations', {
-            params:{'UxplrSearch[departurePoint]':'BRU','UxplrSearch[dateFrom]':'2015-07-07','UxplrSearch[dateTo]':'2015-07-14'},
+            params:data,
             headers: {'Api-Key': '285ag9syA6WMkVn916hw'}
         });
     };
