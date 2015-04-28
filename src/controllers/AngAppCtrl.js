@@ -95,13 +95,13 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'APIservice'
 			})
             .error(function(){
                 console.log("fail");
-            
+                alert("Error: the connection to the databank seems to be interupted!");
             });
     };
     
     $scope.skidestinations = function(){
       //Alle notifications binnehalen en in scope stoppen
-        params = {'UxplrSearch[departurePoint]':'BRU','UxplrSearch[dateFrom]':'2015-07-07','UxplrSearch[dateTo]':'2015-07-14', 'UxplrSearch[requiredActivities]':'112'};
+        params = {'UxplrSearch[departurePoint]':'BRU','UxplrSearch[dateFrom]':'2015-07-07','UxplrSearch[dateTo]':'2015-07-14','UxplrSearch[temperature]':'{"0":{"min":"cold","max":"cool"}}','UxplrSearch[requiredActivities]':'112'};
 		APIservice.destinations(params)
 			.success(function(data){
                 
@@ -113,10 +113,27 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'APIservice'
 			})
             .error(function(){
                 console.log("fail");
-            
+                $scope.loading = false;
+                alert("Error: the connection to the databank seems to be interupted!");
             });
     };
-    
+    $scope.sundestinations = function(){
+      //Alle notifications binnehalen en in scope stoppen
+        params = {'UxplrSearch[departurePoint]':'BRU','UxplrSearch[dateFrom]':'2015-07-07','UxplrSearch[dateTo]':'2015-07-14','UxplrSearch[temperature]':'{"0":{"min":"warm","max":"hot"}}'};
+		APIservice.destinations(params)
+			.success(function(data){
+                
+				$scope.destinations = data;
+
+                console.log(data);
+                $scope.loading = false;
+                
+			})
+            .error(function(){
+                console.log("fail");
+                alert("Error: the connection to the databank seems to be interupted!");
+            });
+    };
     $scope.carVacationFilter = function(dest)
     {
     // Do some tests

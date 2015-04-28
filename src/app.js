@@ -31,9 +31,9 @@ app.config(function($routeProvider, $mdThemingProvider) {
         '50': '48bebc', // blue color (accent)
         '100': '131921', // dark blue (sidenav)
         '200': 'efefef', // grey accent
-        '300': 'e57373',
+        '300': 'ffffff',
         '400': 'ef5350',
-        '500': 'ffffff', //used by default
+        '500': '48bebc', //used by default
         '600': 'e53935',
         '700': 'd32f2f',
         '800': 'c62828',
@@ -53,7 +53,6 @@ app.config(function($routeProvider, $mdThemingProvider) {
           'default': '500', // by default use shade 400 from the pink palette for primary intentions
           'hue-1': '50', // use shade 100 for the <code>md-hue-1</code> class
           'hue-2': '100', // use shade 600 for the <code>md-hue-2</code> class
-          'hue-3': '200' // use shade A100 for the <code>md-hue-3</code> class
+          'hue-3': '300' // use shade A100 for the <code>md-hue-3</code> class
         })
-        .accentPalette('teal');
     });
