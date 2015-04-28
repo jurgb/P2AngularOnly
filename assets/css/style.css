@@ -100,7 +100,7 @@ https://github.com/google/material-design-icons
         height: 70px;
     }
     .categorie-list .selected {
-      color: #03a9f4;
+      color: #48bebc;
       border-right: 4px solid #48bebc;
       background-color: rgba(255,255,255,0.05);
     }

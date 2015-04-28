@@ -3,32 +3,26 @@ app.service('muppetService', ['$q', function($q) {
       id:'1',
       name: 'Car vacations',
       iconurl: './assets/images/icons/car.svg',
-      filter: 'carVacationFilter'
+      filter: 'carVacationFilter',
+      apicall: 'cardestinations'
   }, {
-      id:'4',
+      id:'2',
       name: 'Ski vacations',
       iconurl: './assets/images/icons/ski.svg',
-      filter: 'skiVacationFilter'
+      filter: 'skiVacationFilter',
+      apicall: 'destinations'
   }, {
       id:'3',
       name: 'Sun vacations',
       iconurl: './assets/images/icons/sun.svg',
-      filter: 'carVacationFilter'
+      filter: 'carVacationFilter',
+      apicall: 'cardestinations'
   }, {
-      id:'2',
+      id:'4',
       name: 'Fly vacations',
       iconurl: './assets/images/icons/plane.svg',
-      filter: 'carVacationFilter'
-  }, {
-      id:'5',
-      name: 'cruise vacations',
-      iconurl: './assets/images/icons/cruise.svg',
-      filter: 'carVacationFilter'
-  }, {
-      id:'6',
-      name: 'Citytrips',
-      iconurl: './assets/images/icons/city.svg',
-      filter: 'carVacationFilter'
+      filter: 'carVacationFilter',
+      apicall: 'cardestinations'
   }];
 
   // Promise-based API

@@ -23,7 +23,7 @@ app.config(function($routeProvider, $mdThemingProvider) {
         //Define a route that has a route parameter in it (:customerID)
         .when('/dest/:destID',
             {
-                controller: 'AppCtrl',
+                controller: 'AngAPIController',
                 templateUrl: './views/destdetails.html'
             })
     

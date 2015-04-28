@@ -1,6 +1,6 @@
-app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'destService','APIservice', '$timeout','$log', function($scope, $mdSidenav,  muppetService, destService,APIservice, $timeout, $log) {
+app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'APIservice', '$timeout','$log', function($scope, $mdSidenav,  muppetService, APIservice, $timeout, $log) {
   var allMuppets = [];
-  var allDests = [];
+
   var Categories = [];
   var Departures = [];
     $scope.loading = "true";
@@ -10,12 +10,12 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'destService
     
   $scope.selected = null;
   $scope.muppets = allMuppets;
-  $scope.dests = allDests;
+
   $scope.selectMuppet = selectMuppet;
   $scope.toggleSidenav = toggleSidenav;
   
   loadMuppets();
-  loadDest();
+
   //*******************
   // Internal Methods
   //*******************
@@ -27,14 +27,7 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'destService
         $scope.selected = $scope.muppets[0];
       })
   }
-    
-  function loadDest() {
-    destService.loadAll()
-      .then(function(data){
-        allDests = data;
-        $scope.dests = [].concat(data);
-      })
-  }
+
   function toggleSidenav(name) {
     $mdSidenav(name).toggle();
   }
@@ -42,7 +35,8 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'destService
   function selectMuppet(muppet) {
     $scope.selected = angular.isNumber(muppet) ? $scope.muppets[muppet] : muppet;
     $scope.toggleSidenav('left');
-   
+    $scope.destinations= [];
+    $scope.loading = "true";
   }
     
  $scope.activitycategories = [
@@ -89,7 +83,7 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'destService
     };
     $scope.destinations = function(){
       //Alle notifications binnehalen en in scope stoppen
-        params = {'UxplrSearch[departurePoint]':'BRU','UxplrSearch[dateFrom]':'2015-07-07','UxplrSearch[dateTo]':'2015-07-14'};
+        params = {'UxplrSearch[departurePoint]':'BRU','UxplrSearch[dateFrom]':'2015-07-07','UxplrSearch[dateTo]':'2015-07-14', 'UxplrSearch[requiredActivities]':''};
 		APIservice.destinations(params)
 			.success(function(data){
                 
@@ -104,7 +98,25 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'destService
             
             });
     };
+    
+    $scope.skidestinations = function(){
+      //Alle notifications binnehalen en in scope stoppen
+        params = {'UxplrSearch[departurePoint]':'BRU','UxplrSearch[dateFrom]':'2015-07-07','UxplrSearch[dateTo]':'2015-07-14', 'UxplrSearch[requiredActivities]':'112'};
+		APIservice.destinations(params)
+			.success(function(data){
+                
+				$scope.destinations = data;
 
+                console.log(data);
+                $scope.loading = false;
+                
+			})
+            .error(function(){
+                console.log("fail");
+            
+            });
+    };
+    
     $scope.carVacationFilter = function(dest)
     {
     // Do some tests
