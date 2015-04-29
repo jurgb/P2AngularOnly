@@ -17,49 +17,104 @@
         <div flex layout="row">
             <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
                 <md-list layout="column" class="categorie-list">
-                    <md-item>
+                    <md-item ng-repeat="it in usertabs">
                         <md-item-content>
-                            <md-button ng-click="settab(basic)">
-                                <img ng-src="" class="face" alt="">
-                                Basic info
+                            <md-button ng-click="selectUsertab(it)" ng-class="{'selected' : it === selected }">
+                                <img ng-src="<% it.iconurl %>" class="face" alt="">
+                                <% it.name %>
                             </md-button>
-                        </md-item-content>
-                    </md-item>
-                    <md-item >
-                        <md-item-content>
-                           <div layout="row" layout-margin layout-align="center center" ng-init="departures()">
-                              <md-select style="display:block;" placeholder="Pick" ng-model="user.departurepoint" >
-                                <md-option class="md-primary md-hue-1" ng-repeat="dep in departurepoints" value="<% dep %>"><% dep.label %></md-option>
-                              </md-select>
-                            </div>
-                        </md-item-content>
-                    </md-item>
-                    <md-item>
-                        <md-item-content>
-                            <div layout="row" layout-margin flex>
-                              <div flex="40" layout layout-align="center center">
-                                <span class="md-body-1">Hotel stars</span>
-                              </div>
-                              <md-slider flex md-discrete ng-model="color.green" min="0" max="5" aria-label="green" id="green-slider" class="md-accent">
-                              </md-slider>
-                            </div>
                         </md-item-content>
                     </md-item>
                 </md-list>
             </md-sidenav>
-
-            <md-content layout="column" flex ng-init="activitycat()">
-              <div>
-                  <h1>attractions</h1>
-                <% activitycategories.Attractions  %>
+            <div layout-fill ng-switch="selected.id">
+                <md-content ng-switch-when="1" layout="column" flex ng-init="activitycat()">
+                    <div layout-fill layout-align="center center" layout="column">
+                        <form class="userform" layout-padding name="userForm">
+                          <div layout layout-sm="column">
+                            <md-input-container flex>
+                              <label>First name</label>
+                              <input ng-model="user.firstName">
+                            </md-input-container>
+                            <md-input-container flex>
+                              <label>Last Name</label>
+                              <input ng-model="user.lastName">
+                            </md-input-container>
+                          </div>
+                          <md-input-container>
+                            <label>E-mail</label>
+                            <input ng-model="user.email">
+                          </md-input-container>
+                          <md-input-container>
+                            <label>Street</label>
+                            <input ng-model="user.address">
+                          </md-input-container>
+                          <div layout layout-sm="column">
+                            <md-input-container flex>
+                              <label>Postal Code</label>
+                              <input ng-model="user.postalCode">
+                            </md-input-container>
+                            <md-input-container flex>
+                              <label>City</label>
+                              <input ng-model="user.city">
+                            </md-input-container>
+                           
+                          </div>
+                          <md-input-container flex>
+                            <label>About me</label>
+                            <textarea ng-model="user.biography" columns="1" md-maxlength="200"></textarea>
+                          </md-input-container>
+                        </form>                   
                     </div>
-                    <div>    
-                        <h1>Entertainement</h1>    
-                <% activitycategories.Entertainment   %>
-                    </div>
-                    <div>
-                <h1>outdoors</h1>
-                <% activitycategories.Outdoors   %>
-                    </div>
-            </md-content>
+                </md-content>
+                
+                <md-content ng-switch-when="2" layout="row" layout-align="center center" ng-init="activitycat()">
+                    
+                <form class="userform" layout-padding layout="column" name="userForm">
+                    <div layout="column" layout-align="center center">
+                        <div layout="column" layout-align="center center">
+                        <h2>Select your travel methods</h2>
+                        <div layout="row">
+                            <md-checkbox md-model="user.airtravel" class="md-primary">Airtravel</md-checkbox>
+                            <md-checkbox md-model="user.traintravel" class="md-primary">Traintravel</md-checkbox>
+                            <md-checkbox md-model="user.cartravel" class="md-primary">Cartravel</md-checkbox> 
+                        </div>
+                        <md-select placeholder="Set your departure point" ng-model="user.departurepoint" ng-init="departures()">
+                            <md-option class="md-primary" ng-repeat="dep in departurepoints" value="<% dep.value %>"><% dep.label %></md-option>
+                        </md-select>
+                        </div>
+                        <div layout="column" layout-fill layout-align="center center">
+                            <h2>Hotel settings</h2>
+                            Minimum stars
+                            <div layout="row" layout-fill layout-align="space-around">
+                                <md-slider flex md-discrete ng-model="user.hotelmin" min="1" max="5" aria-label="green" id="green-slider" class="md-primary"></md-slider>
+                            </div>
+                            Maximum stars
+                            <div layout="row" layout-fill layout-align="space-around">
+                                <md-slider flex md-discrete ng-model="user.hotelmax" min="1" max="5" aria-label="green" id="green-slider" class="md-primary"></md-slider>
+                            </div>
+                            How good should the food be
+                            <div layout="row" layout-fill layout-align="space-around">
+                                <md-slider flex md-discrete ng-model="user.food" min="1" max="10" aria-label="green" id="green-slider" class="md-primary"></md-slider>
+                            </div>
+                        </div>
+                    </div>      
+                </form>
+                </md-content>
+                <md-content ng-switch-when="3" layout="column" flex ng-init="activitycat()">
+                    <% selected %>
+                  <div>
+                      <h1>attractions</h1>
+                    <% activitycategories.Attractions  %>
+                        </div>
+                        <div>    
+                            <h1>Entertainement</h1>    
+                    <% activitycategories.Entertainment   %>
+                        </div>
+                        <div>
+                    <h1>outdoors</h1>
+                    <% activitycategories.Outdoors   %>
+                        </div>
+                </md-content>
+            </div>
         </div>

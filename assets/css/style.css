@@ -214,3 +214,10 @@ md-card
     min-height: 300px;
     max-height: 300px;
 }
+.userform
+{
+    padding: 50px;
+    border: 1px solid #efefef;
+    background-color: #efefef;
+    margin-top: 15px;
+}
