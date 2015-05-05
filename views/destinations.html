@@ -2,7 +2,7 @@
                 <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
                     <span class="visuallyhidden">Menu</span>
                 </button>
-                <h1 class="md-toolbar-tools titelmpd" hide-sm>My perfect destination</h1>
+                <h1 class="md-toolbar-tools titelmpd" hide-sm><img src="../assets/images/logo.png"></h1>
             <div flex class="md-toolbar-tools" layout="row" layout-align="end">
                    <a class="menulink" href="#/app">Home</a>                
                     
@@ -61,7 +61,7 @@
                         <md-item ng-repeat="dest in destinations">
                           
                             <md-item-content>
-                                <a href="#/dest/<% dest.id %>">
+                                <md-button class="md-primary"  ng-click="showAdvanced(dest)">
                                <md-card >
                                      <img class="dest_img" src="<% dest.image %>" alt="">
                                  <md-card-content style="width:100%;display:inline-block;" layout="row" >
@@ -71,7 +71,7 @@
                                         </span>
                                  </md-card-content>
                                 </md-card>
-                                </a>
+                                </md-button>
                             </md-item-content>
                         </md-item>
                     </md-list>
@@ -81,7 +81,7 @@
                             <md-list id="destinationlist" layout="row" layout-wrap layout-align="center start"  ng-init="skidestinations()" >                        
                                 <md-item ng-repeat="dest in destinations | orderBy:'matchrate.total':reverse='true'">
                                     <md-item-content>
-                                        <a href="#/dest/<% dest.id %>">
+                                       <md-button class="md-primary"  ng-click="showAdvanced(dest)">
                                        <md-card >
                                              <img class="dest_img" src="<% dest.image %>" alt="">
                                          <md-card-content style="width:100%;display:inline-block;" layout="row" >
@@ -95,7 +95,7 @@
                                                 </span>
                                          </md-card-content>
                                         </md-card>
-                                        </a>
+                                        </md-button>
                                     </md-item-content>
                                 </md-item>
                             </md-list>
@@ -130,7 +130,7 @@
                         <md-item ng-repeat="dest in destinations">
                           
                             <md-item-content>
-                                <a href="#/dest/<% dest.id %>">
+                               <md-button class="md-primary"  ng-click="showAdvanced(dest)">
                                <md-card >
                                      <img class="dest_img" src="<% dest.image %>" alt="">
                                  <md-card-content style="width:100%;display:inline-block;" layout="row" >
@@ -140,7 +140,7 @@
                                         </span>
                                  </md-card-content>
                                 </md-card>
-                                </a>
+                                </md-button>
                             </md-item-content>
                         </md-item>
                     </md-list>
@@ -151,7 +151,7 @@
                         <md-item ng-repeat="dest in destinations">
                           
                             <md-item-content>
-                                <a href="#/dest/<% dest.id %>">
+                            <md-button class="md-primary"  ng-click="showAdvanced(dest)">
                                <md-card >
                                      <img class="dest_img" src="<% dest.image %>" alt="">
                                  <md-card-content style="width:100%;display:inline-block;" layout="row" >
@@ -161,7 +161,7 @@
                                         </span>
                                  </md-card-content>
                                 </md-card>
-                                </a>
+                                </md-button>
                             </md-item-content>
                         </md-item>
                     </md-list>

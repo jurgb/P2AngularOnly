@@ -2,7 +2,7 @@
                 <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
                     <span class="visuallyhidden">Menu</span>
                 </button>
-                <h1 class="md-toolbar-tools titelmpd" hide-sm>My perfect destination</h1>
+                <h1 class="md-toolbar-tools titelmpd" hide-sm><img src="../assets/images/logo.png"></h1>
             <div flex class="md-toolbar-tools" layout="row" layout-align="end">
                    <a class="menulink" href="#/app">Home</a>                
                     
@@ -75,12 +75,13 @@
                         <div layout="column" layout-align="center center">
                         <h2>Select your travel methods</h2>
                         <div layout-sm="column" layout="row">
-                            <md-checkbox md-model="user.airtravel" class="md-primary">Airtravel</md-checkbox>
-                            <md-checkbox md-model="user.traintravel" class="md-primary">Traintravel</md-checkbox>
-                            <md-checkbox md-model="user.cartravel" class="md-primary">Cartravel</md-checkbox> 
+                            <md-checkbox ng-model="user.travel.airtravel" class="md-primary">Airtravel</md-checkbox>
+                            <md-checkbox ng-model="user.travel.traintravel" class="md-primary">Traintravel</md-checkbox>
+                            <md-checkbox ng-model="user.travel.cartravel" class="md-primary">Cartravel</md-checkbox>
+                            <md-checkbox ng-model="user.travel.boattravel" class="md-primary">Boattravel</md-checkbox>
                         </div>
-                        <md-select placeholder="Set your departure point" ng-model="user.departurepoint" ng-init="departures()">
-                            <md-option class="md-primary" ng-repeat="dep in departurepoints" value="<% dep.value %>"><% dep.label %></md-option>
+                        <md-select placeholder="<% user.departurepoint.label %>" ng-model="user.departurepoint" ng-init="departures()">
+                            <md-option class="md-primary" ng-repeat="dep in departurepoints" value="<% dep %>"><% dep.label %></md-option>
                         </md-select>
                         </div>
                         <div layout="column" layout-fill layout-align="center center">
@@ -101,20 +102,28 @@
                     </div>      
                 </form>
                 </md-content>
-                <md-content ng-switch-when="3" layout="column" flex ng-init="activitycat()">
-                    <% selected %>
-                  <div>
-                      <h1>attractions</h1>
-                    <% activitycategories.Attractions  %>
+                <md-content ng-switch-when="3" layout="column" ng-init="activitycat()">
+                    
+                    <div ng-show="loading" layout="row" layout-align="space-around">
+                      <md-progress-circular md-diameter="20" id="loadgif" class="md-primary md-hue-1" md-mode="indeterminate"></md-progress-circular>
+                    </div>
+                       <div>
+                       <md-tabs md-dynamic-height>
+                        <div layout="column" ng-repeat='(key,val) in activitycategories'>
+                            
+                          <md-tab class="md-primary"  label="<% key %>">
+                            <md-content class="md-padding md-primary">
+                              <h1><% key %></h1>
+                            <div layout='row' layout-sm="column" layout-wrap>
+                                <md-checkbox ng-repeat="value in val" ng-model='user.selectedData[key][value]' class="md-primary"><% value %></md-checkbox>
+                            </div>
+                        </md-content>
+                      </md-tab>
+    
+                            
+                            
                         </div>
-                        <div>    
-                            <h1>Entertainement</h1>    
-                    <% activitycategories.Entertainment   %>
-                        </div>
-                        <div>
-                    <h1>outdoors</h1>
-                    <% activitycategories.Outdoors   %>
-                        </div>
+                        </md-tabs>
                 </md-content>
             </div>
         </div>

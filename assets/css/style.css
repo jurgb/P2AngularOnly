@@ -21,8 +21,16 @@ https://github.com/google/material-design-icons
         background-color: #48bebc;  
         width: 305px;
         color: #fff;
+        text-align: center;
     }
-
+    h1.titelmpd img
+    {
+        padding: 2%;
+        max-width: 100%;
+        max-height:100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
     /*menu btn*/
     .menuBtn {
       background: transparent url("../images/icons/settings.svg") no-repeat  center center;
@@ -220,4 +228,9 @@ md-card
     border: 1px solid #efefef;
     background-color: #efefef;
     margin-top: 15px;
+}
+md-tabs.md-default-theme md-tabs-ink-bar
+{
+    color: #48bebc;
+    background-color: #48bebc;   
 }

@@ -1,0 +1,27 @@
+<md-dialog aria-label="More information">
+  <md-dialog-content class="sticky-container">
+    <md-subheader class="md-sticky-no-effect">More information</md-subheader>
+    <div layout="column" layout-fill>
+      <img src="<% item.image %>" alt="Picture of <% item.name %>">
+      <div layout-wrap layout-margin layout="column">
+      <h2><% item.name %></h2>
+      <h4><% item.region %></h4>
+      <p>
+      <% item.description %>
+      It is located aprox. <% item.distance.miles %> miles (~<% item.distance.miles * 1.609344 |number:0 %> km) away from your current location.
+      The locally used currency is <% item.currency.symbol %>.
+      This location matches with you for <% item.matchrate.total %>.
+      The cost of this trip contains both the flight (<% item.priceDetails.flight %>) and the cost to stay there( <% item.priceDetails.food + item.priceDetails.hotel | currency:'€ ' %>).
+      </p>
+    </div>
+    </div>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <md-button ng-click="cancel()" class="md-primary">
+     Go back
+    </md-button>
+    <md-button ng-click="answer('useful')" class="md-primary">
+      Book flight
+    </md-button>
+  </div>
+</md-dialog>

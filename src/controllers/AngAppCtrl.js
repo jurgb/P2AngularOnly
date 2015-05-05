@@ -1,4 +1,4 @@
-app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'APIservice', '$timeout','$log', function($scope, $mdSidenav,  muppetService, APIservice, $timeout, $log) {
+app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'APIservice', '$timeout','$log', '$mdDialog', function($scope, $mdSidenav,  muppetService, APIservice, $timeout, $log, $mdDialog) {
   var allMuppets = [];
 
   var Categories = [];
@@ -19,6 +19,30 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'APIservice'
   //*******************
   // Internal Methods
   //*******************
+    $scope.showAdvanced = function(data) {
+    $mdDialog.show({
+      controller: DialogController,
+      templateUrl: './views/dialog/dialog.html',
+        locals: {
+           item: data
+         }
+    })
+    .then(function(answer) {
+       window.location = "#/profile";
+    });
+  };
+function DialogController($scope, $mdDialog, item) {
+    $scope.item = item;
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
+}
   function loadMuppets() {
     muppetService.loadAll()
       .then(function(muppets){
@@ -83,7 +107,7 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', 'muppetService', 'APIservice'
     };
     $scope.destinations = function(){
       //Alle notifications binnehalen en in scope stoppen
-        params = {'UxplrSearch[departurePoint]':'BRU','UxplrSearch[dateFrom]':'2015-07-07','UxplrSearch[dateTo]':'2015-07-14', 'UxplrSearch[requiredActivities]':''};
+        params = {'UxplrSearch[departurePoint]':'BRU','UxplrSearch[dateFrom]':'2015-07-07','UxplrSearch[dateTo]':'2015-07-14', 'UxplrSearch[requiredActivities]':'','UxplrSearch[optionalActivities]':'1, 134, 21'};
 		APIservice.destinations(params)
 			.success(function(data){
                 
