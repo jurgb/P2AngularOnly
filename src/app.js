@@ -7,24 +7,29 @@ app.config(function($routeProvider, $mdThemingProvider) {
     $routeProvider
         .when('/',
             {
-                controller: 'AppCtrl',
+                controller: 'AngMpdController',
                 templateUrl: './views/login.html'
+            })
+        .when('/signup',
+            {
+                controller: 'AngMpdController',
+                templateUrl: './views/signup.html'
             })
         .when('/app',
             {
-                controller: 'AppCtrl',
+                controller: 'AngMpdController',
                 templateUrl: './views/destinations.html'
             })
         .when('/profile',
             {
-                controller: 'AngAPIController',
+                controller: 'AngMpdController',
                 templateUrl: './views/profile.html'
             })
         //Define a route that has a route parameter in it (:customerID)
-        .when('/dest/:destID',
+        .when('/book',
             {
-                controller: 'AngAPIController',
-                templateUrl: './views/destdetails.html'
+                controller: 'AngMpdController',
+                templateUrl: './views/book.html'
             })
     
      $mdThemingProvider.definePalette('mpdPalette', {
@@ -46,7 +51,7 @@ app.config(function($routeProvider, $mdThemingProvider) {
                                             // on this palette should be dark or light
         'contrastDarkColors': ['50', '100', //hues which contrast should be 'dark' by default
          '200', '300', '500', 'A100'],
-        'contrastLightColors': undefined    // could also specify this if default was 'dark'
+        'contrastLightColors': 'light'    // could also specify this if default was 'dark'
     });
     $mdThemingProvider.theme('default')
         .primaryPalette('mpdPalette', {

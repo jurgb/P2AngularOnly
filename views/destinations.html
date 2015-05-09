@@ -2,12 +2,12 @@
                 <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
                     <span class="visuallyhidden">Menu</span>
                 </button>
-                <h1 class="md-toolbar-tools titelmpd" hide-sm><img src="../assets/images/logo.png"></h1>
+                <h1 class="md-toolbar-tools titelmpd" hide-sm><img src="./assets/images/logo.png"></h1>
             <div flex class="md-toolbar-tools" layout="row" layout-align="end">
                    <a class="menulink" href="#/app">Home</a>                
                     
                 <a class="menulink borderleft" href="#/profile">
-                    Jurgen Barbier
+                    jurgen barbier
                 </a>
                 <span hide-sm class="profilepicwrapper">
                         <img class="profilepic" src="./assets/images/proflepics/me.png" alt="profile picture of Jurgen Barbier">
@@ -17,9 +17,9 @@
         <div flex layout="row">
             <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
                 <md-list layout="column" class="categorie-list">
-                    <md-item ng-repeat="it in muppets">
+                    <md-item ng-repeat="it in vacationtypes">
                         <md-item-content>
-                            <md-button ng-click="selectMuppet(it)" ng-class="{'selected' : it === selected }">
+                            <md-button ng-click="selectVacType(it)" ng-class="{'selected' : it === selectedVacType }">
                                 <img ng-src="<% it.iconurl %>" class="face" alt="">
                                 <% it.name %>
                             </md-button>
@@ -48,13 +48,13 @@
                     </div>
                 </div>
                 <div layout="column" layout-padding>
-                    <h2><% selected.name %></h2>
+                    <h2><% selectedVacType.name %></h2>
                    
                     <div ng-show="loading" layout="row" layout-align="space-around">
                       <md-progress-circular md-diameter="20" id="loadgif" class="md-primary" md-mode="indeterminate"></md-progress-circular>
                     </div>
                     
-                    <div ng-switch="selected.id">
+                    <div ng-switch="selectedVacType.id">
 <!-- car vakanties -->  
                         <div layout="row" ng-switch-when="1" layout-wrap>
                             <md-list id="destinationlist" layout="row" layout-wrap layout-align="center start"  ng-init="destinations()" >                        
@@ -63,7 +63,7 @@
                             <md-item-content>
                                 <md-button class="md-primary"  ng-click="showAdvanced(dest)">
                                <md-card >
-                                     <img class="dest_img" src="<% dest.image %>" alt="">
+                                     <img class="dest_img" src="<% dest.image %>" alt="<% dest.image %>">
                                  <md-card-content style="width:100%;display:inline-block;" layout="row" >
                                        <span style="margin-bottom:10px;margin-top:10px;display:inline-block;width:70%;" layout="column" layout-align="start center">
                                            <span style="display:block;"><% dest.name  %></span>
@@ -105,7 +105,7 @@
                             <md-list id="destinationlist" layout="row" layout-wrap layout-align="center start"  ng-init="sundestinations()" >
                                 <md-item ng-repeat="dest in destinations | orderBy:'matchrate.total':reverse='true'">
                                     <md-item-content>
-                                        <a href="#/dest/<% dest.id %>">
+                                       <md-button class="md-primary"  ng-click="showAdvanced(dest)">
                                        <md-card >
                                              <img class="dest_img" src="<% dest.image %>" alt="">
                                          <md-card-content style="width:100%;display:inline-block;" layout="row" >
@@ -119,7 +119,7 @@
                                                 </span>
                                          </md-card-content>
                                         </md-card>
-                                        </a>
+                                        </md-button>
                                     </md-item-content>
                                 </md-item>
                             </md-list>

@@ -2,7 +2,7 @@
                 <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
                     <span class="visuallyhidden">Menu</span>
                 </button>
-                <h1 class="md-toolbar-tools titelmpd" hide-sm><img src="../assets/images/logo.png"></h1>
+                <h1 class="md-toolbar-tools titelmpd" hide-sm><img src="./assets/images/logo.png"></h1>
             <div flex class="md-toolbar-tools" layout="row" layout-align="end">
                    <a class="menulink" href="#/app">Home</a>                
                     
@@ -19,7 +19,7 @@
                 <md-list layout="column" class="categorie-list">
                     <md-item ng-repeat="it in usertabs">
                         <md-item-content>
-                            <md-button ng-click="selectUsertab(it)" ng-class="{'selected' : it === selected }">
+                            <md-button ng-click="selectUsertab(it)" ng-class="{'selected' : it === selectedUsertab }">
                                 <img ng-src="<% it.iconurl %>" class="face" alt="">
                                 <% it.name %>
                             </md-button>
@@ -27,7 +27,7 @@
                     </md-item>
                 </md-list>
             </md-sidenav>
-            <div layout-fill ng-switch="selected.id">
+            <div layout-fill ng-switch="selectedUsertab.id">
                 <md-content ng-switch-when="1" layout="column" flex ng-init="activitycat()">
                     <div layout-fill layout-align="center center" layout="column">
                         <form class="userform" layout-padding name="userForm">
@@ -102,17 +102,15 @@
                     </div>      
                 </form>
                 </md-content>
-                <md-content ng-switch-when="3" layout="column" ng-init="activitycat()">
-                    
-                    <div ng-show="loading" layout="row" layout-align="space-around">
-                      <md-progress-circular md-diameter="20" id="loadgif" class="md-primary md-hue-1" md-mode="indeterminate"></md-progress-circular>
-                    </div>
-                       <div>
+                <md-content ng-switch-when="3" layout="column" layout-fill layout-align="start center" ng-init="activitycat()">
+
+                       <div layout="column" >
                        <md-tabs md-dynamic-height>
-                        <div layout="column" ng-repeat='(key,val) in activitycategories'>
+                        <div  layout="column" ng-repeat='(key,val) in activitycategories'>
                             
-                          <md-tab class="md-primary"  label="<% key %>">
-                            <md-content class="md-padding md-primary">
+                          <md-tab  class="md-primary"  label="<% key %>">
+                            
+                            <md-content class="md-padding">
                               <h1><% key %></h1>
                             <div layout='row' layout-sm="column" layout-wrap>
                                 <md-checkbox ng-repeat="value in val" ng-model='user.selectedData[key][value]' class="md-primary"><% value %></md-checkbox>
@@ -124,6 +122,6 @@
                             
                         </div>
                         </md-tabs>
+                        </div>
                 </md-content>
-            </div>
         </div>
