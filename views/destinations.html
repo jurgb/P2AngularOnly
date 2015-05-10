@@ -7,7 +7,7 @@
                    <a class="menulink" href="#/app">Home</a>                
                     
                 <a class="menulink borderleft" href="#/profile">
-                    jurgen barbier
+                    <% user.firstName + ' ' + user.lastName %>
                 </a>
                 <span hide-sm class="profilepicwrapper">
                         <img class="profilepic" src="./assets/images/proflepics/me.png" alt="profile picture of Jurgen Barbier">
@@ -57,8 +57,8 @@
                     <div ng-switch="selectedVacType.id">
 <!-- car vakanties -->  
                         <div layout="row" ng-switch-when="1" layout-wrap>
-                            <md-list id="destinationlist" layout="row" layout-wrap layout-align="center start"  ng-init="destinations()" >                        
-                        <md-item ng-repeat="dest in destinations">
+                            <md-list id="destinationlist" layout="row" layout-wrap layout-align="center start"  ng-init="cardestinations()" >                        
+                        <md-item ng-repeat="dest in cardestinations">
                           
                             <md-item-content>
                                 <md-button class="md-primary"  ng-click="showAdvanced(dest)">
@@ -79,7 +79,7 @@
 <!-- SKi vakanties -->                       
                         <div layout="row" ng-switch-when="2" layout-wrap>
                             <md-list id="destinationlist" layout="row" layout-wrap layout-align="center start"  ng-init="skidestinations()" >                        
-                                <md-item ng-repeat="dest in destinations | orderBy:'matchrate.total':reverse='true'">
+                                <md-item ng-repeat="dest in skidestinations | orderBy:'matchrate.total':reverse='true'">
                                     <md-item-content>
                                        <md-button class="md-primary"  ng-click="showAdvanced(dest)">
                                        <md-card >
@@ -103,7 +103,7 @@
 <!-- Sun vakanties -->                       
                         <div layout="row" ng-switch-when="3" layout-wrap>
                             <md-list id="destinationlist" layout="row" layout-wrap layout-align="center start"  ng-init="sundestinations()" >
-                                <md-item ng-repeat="dest in destinations | orderBy:'matchrate.total':reverse='true'">
+                                <md-item ng-repeat="dest in sundestinations | orderBy:'matchrate.total':reverse='true'">
                                     <md-item-content>
                                        <md-button class="md-primary"  ng-click="showAdvanced(dest)">
                                        <md-card >
@@ -126,8 +126,8 @@
                         </div>
 <!-- fly vakanties -->  
                         <div layout="row" ng-switch-when="4" layout-wrap>
-                            <md-list id="destinationlist" layout="row" layout-wrap layout-align="center start"  ng-init="destinations()" >                        
-                        <md-item ng-repeat="dest in destinations">
+                            <md-list id="destinationlist" layout="row" layout-wrap layout-align="center start"  ng-init="flydestinations()" >                        
+                        <md-item ng-repeat="dest in flydestinations">
                           
                             <md-item-content>
                                <md-button class="md-primary"  ng-click="showAdvanced(dest)">
@@ -147,8 +147,8 @@
                         </div>
 <!-- default vakanties -->  
                         <div layout="row" ng-switch-default layout-wrap>
-                            <md-list id="destinationlist" layout="row" layout-wrap layout-align="center start"  ng-init="destinations()" >                        
-                        <md-item ng-repeat="dest in destinations">
+                            <md-list id="destinationlist" layout="row" layout-wrap layout-align="center start"  ng-init="cardestinations()" >                        
+                        <md-item ng-repeat="dest in cardestinations">
                           
                             <md-item-content>
                             <md-button class="md-primary"  ng-click="showAdvanced(dest)">

@@ -1,131 +1,138 @@
-app.controller("AngMpdController", function($scope, APIservice, $mdSidenav, $mdDialog, $http){
+app.controller("AngMpdController", function($scope, APIservice, $mdSidenav, $mdDialog, $http, user){
     
 //*******************
 // INIT LOADING
 //*******************
 $scope.loading = "true";
-
+$scope.showerror = false;
+$scope.error = null;
 //*******************
 // INIT ALL ARRAYS
 //******************* 
 $scope.activitycategories = [];
 $scope.departurepoints = [];
-$scope.destinations = [];
+    
+$scope.cardestinations = [];
+$scope.skidestinations = [];
+$scope.flydestinations = [];
+$scope.sundestinations = [];
+
 $scope.selectedUsertab = null;
 $scope.selectedVacType = null;
 $scope.booktrip = null;
     
 // USER
-$scope.user = {
-        email: 'Jurgenbarbier@gmail.com',
-        firstName: 'Jurgen',
-        lastName: 'Barbier' ,
-        address: 'Heidestraat 88' ,
-        city: 'Schelle' ,
-        biography: 'I created this app',
-        postalCode : '2627',
-        hotelmin: "1",
-        hotelmax: "5",
-        departurepoint:{
-            label: 'Brussels (BRU)',
-            value: 'BRU'
-        },
-        food:"7",
-        travel:{
-            airtravel:true,
-            cartravel:true,
-            traintravel:false,
-            boattravel:true
-        },
-        selectedData:{
-            Attractions:{
-                'Religious Sites': false,
-                'Science Musueams':false,
-                'Ships':true,
-                'Specialty Museums':false,
-                'Piers/Boardwalks':true,
-                'Wineries':false,
-                'Zoos':false,
-                'Bridges':false,
-                'Ancient Ruins':false,
-                'Castles': true,
-                'Cemeteries': false,
-                "Children's Museums": false,
-                'Churches/Cathedrals':true,
-                'Aquariums': true,
-                'Architectural Buildings': true,
-                'Historic Sites':false,
-                'Historic Museums':false,
-                'Landmarks': true,
-                'Art Gallaries': false,
-                'Military Museums':false,
-                'Monuments/Statues': true,
-                'Art Museums': false,
-                'Museums': false,
-                'Natural History': false,
-                'Neighborhoods': true,
-                'Observation Decks': true,
-                'Planetariums': true
-            },
-            Entertainment:{
-                'Theme Parks':true,
-                'Bar/Clubs':true,
-                'Shops':true,
-                'Specialty Shops':false,
-                'Sports Camps':true,
-                'Sport Complexes':true,
-                'Theaters':false,
-                'Tours':true,
-                'Water Parks':true,
-                'Casinos':false,
-                'Concerts':false,
-                'Dinner Theaters':false,
-                'Educational Sites':false,
-                'Factory Tours':false,
-                'Entertainment Centers':true,
-                'Golf Courses':false,
-                'Health Clubs':true,
-                'Arenas/Stadiums':false,
-                'Liberaries':false,
-                'Malls':true,
-                'Movie Theaters':true,
-                'Operas':false,
-                'Performances':false,
-                'Playgrounds':false,
-            },
-            Outdoors:{
-                'Reefs':true,
-                'Scenic Dives':true,
-                'Scenic Railroads':false,
-                'Historic Walking Areas':false,
-                'Ski/Snowboard Areas':false,
-                'State Parks':true,
-                'Beaches':true,
-                'Trails':false,
-                'Biking Trails':false,
-                'Waterfalls':true,
-                'Bodies of Water':false,
-                'Caverns/Caves':false,
-                'Farms':false,
-                'Forests':true,
-                'Fountains':true,
-                'Gardens':true,
-                'Geologic Formations':true,
-                'Hiking Trails':false,
-                'Historic Walking Areas':false,
-                'Horseback Riding':false,
-                'Hot Springs/Geysers':true,
-                'Islands':true,
-                'Lookouts':false,
-                'Mountains':true,
-                'National Parks':true,
-                'Nature/Wildlife Areas':false,
-                'Parks':false,
-            }
-        },
-        selectedActivities:"112, 123"
-        
-};
+$scope.user = user.getPeopleResponse();
+//$scope.user = {
+//        email: 'Jurgenbarbier@gmail.com',
+//        firstName: 'Jurgen',
+//        lastName: 'Barbier' ,
+//        address: 'Heidestraat 88' ,
+//        city: 'Schelle' ,
+//        biography: 'I created this app',
+//        postalCode : '2627',
+//        hotelmin: "1",
+//        hotelmax: "5",
+//        departurepoint:{
+//            label: 'Brussels (BRU)',
+//            value: 'BRU'
+//        },
+//        food:"7",
+//        travel:{
+//            airtravel:true,
+//            cartravel:true,
+//            traintravel:false,
+//            boattravel:true
+//        },
+//        selectedData:{
+//            Attractions:{
+//                'Religious Sites': false,
+//                'Science Musueams':false,
+//                'Ships':true,
+//                'Specialty Museums':false,
+//                'Piers/Boardwalks':true,
+//                'Wineries':false,
+//                'Zoos':false,
+//                'Bridges':false,
+//                'Ancient Ruins':false,
+//                'Castles': true,
+//                'Cemeteries': false,
+//                "Children's Museums": false,
+//                'Churches/Cathedrals':true,
+//                'Aquariums': true,
+//                'Architectural Buildings': true,
+//                'Historic Sites':false,
+//                'Historic Museums':false,
+//                'Landmarks': true,
+//                'Art Gallaries': false,
+//                'Military Museums':false,
+//                'Monuments/Statues': true,
+//                'Art Museums': false,
+//                'Museums': false,
+//                'Natural History': false,
+//                'Neighborhoods': true,
+//                'Observation Decks': true,
+//                'Planetariums': true
+//            },
+//            Entertainment:{
+//                'Theme Parks':true,
+//                'Bar/Clubs':true,
+//                'Shops':true,
+//                'Specialty Shops':false,
+//                'Sports Camps':true,
+//                'Sport Complexes':true,
+//                'Theaters':false,
+//                'Tours':true,
+//                'Water Parks':true,
+//                'Casinos':false,
+//                'Concerts':false,
+//                'Dinner Theaters':false,
+//                'Educational Sites':false,
+//                'Factory Tours':false,
+//                'Entertainment Centers':true,
+//                'Golf Courses':false,
+//                'Health Clubs':true,
+//                'Arenas/Stadiums':false,
+//                'Liberaries':false,
+//                'Malls':true,
+//                'Movie Theaters':true,
+//                'Operas':false,
+//                'Performances':false,
+//                'Playgrounds':false,
+//            },
+//            Outdoors:{
+//                'Reefs':true,
+//                'Scenic Dives':true,
+//                'Scenic Railroads':false,
+//                'Historic Walking Areas':false,
+//                'Ski/Snowboard Areas':false,
+//                'State Parks':true,
+//                'Beaches':true,
+//                'Trails':false,
+//                'Biking Trails':false,
+//                'Waterfalls':true,
+//                'Bodies of Water':false,
+//                'Caverns/Caves':false,
+//                'Farms':false,
+//                'Forests':true,
+//                'Fountains':true,
+//                'Gardens':true,
+//                'Geologic Formations':true,
+//                'Hiking Trails':false,
+//                'Historic Walking Areas':false,
+//                'Horseback Riding':false,
+//                'Hot Springs/Geysers':true,
+//                'Islands':true,
+//                'Lookouts':false,
+//                'Mountains':true,
+//                'National Parks':true,
+//                'Nature/Wildlife Areas':false,
+//                'Parks':false,
+//            }
+//        },
+//        selectedActivities:"112, 123"
+//        
+//};
 //*******************
 // USERTABS
 //******************* 
@@ -270,13 +277,13 @@ $scope.activitycat = function(){
             });
     };
 
-    $scope.destinations = function(){
+    $scope.cardestinations = function(){
       //Alle notifications binnehalen en in scope stoppen
         params = {'UxplrSearch[departurePoint]':'BRU','UxplrSearch[dateFrom]':'2015-07-07','UxplrSearch[dateTo]':'2015-07-14', 'UxplrSearch[requiredActivities]':'','UxplrSearch[optionalActivities]':'1, 134, 21'};
 		APIservice.destinations(params)
 			.success(function(data){
                 
-				$scope.destinations = data;
+				$scope.cardestinations = data;
 
                 console.log(data);
             $scope.loading = false;
@@ -302,7 +309,7 @@ $scope.activitycat = function(){
 		APIservice.destinations(params)
 			.success(function(data){
                 
-				$scope.destinations = data;
+				$scope.skidestinations = data;
 
                 console.log(data);
                 $scope.loading = false;
@@ -328,10 +335,35 @@ $scope.activitycat = function(){
 		APIservice.destinations(params)
 			.success(function(data){
                 
-				$scope.destinations = data;
+				$scope.sundestinations = data;
 
                 console.log(data);
                 $scope.loading = false;
+                
+			})
+            .error(function(){
+                console.log("fail");
+                $mdDialog.show(
+                  $mdDialog.alert()
+                    .parent(angular.element(document.body))
+                    .title('Error!')
+                    .content('the connection to the databank seems to be interupted!')
+                    .ariaLabel('Alert Dialog')
+                    .ok('Close')
+                    .targetEvent(ev)
+                );
+            });
+    };
+        $scope.flydestinations = function(){
+      //Alle notifications binnehalen en in scope stoppen
+        params = {'UxplrSearch[departurePoint]':'BRU','UxplrSearch[dateFrom]':'2015-07-07','UxplrSearch[dateTo]':'2015-07-14', 'UxplrSearch[requiredActivities]':'','UxplrSearch[optionalActivities]':'1, 134, 21'};
+		APIservice.destinations(params)
+			.success(function(data){
+                
+				$scope.flydestinations = data;
+
+                console.log(data);
+            $scope.loading = false;
                 
 			})
             .error(function(){
@@ -388,11 +420,33 @@ function DialogController($scope, $mdDialog, item) {
             console.log("inserted Successfully");
         });
     };
+//    $scope.login = function(add){
+//        $http.get("./views/php/login.php",{'email':$scope.loginuser.email, 'password':$scope.loginuser.password})
+//        .success(function(data, status, headers, config){
+//            console.log(data);
+//            console.log("collected succesfully");
+//            console.log($scope.loginuser);
+//            user.savePeopleResponse($scope.loginuser);
+//            console.log(user.getPeopleResponse);
+//            window.location = "#/app";
+//        });
+//    };
     $scope.login = function(add){
-        $http.get("./views/php/login.php",{'email':$scope.loginuser.email, 'password':$scope.loginuser.password})
-        .success(function(data, status, headers, config){
-            console.log(data);
-            console.log("collected succesfully");
-        });
+        $scope.showerror = false;
+            if ($scope.loginuser.username == "jurgb") {
+                if ($scope.loginuser.password == "3imda") {
+                    window.location = "#/app";
+                }else{
+                    $scope.loginuser.username = null;
+                    $scope.loginuser.password = null;
+                    $scope.error = "Please provide a valid password ";
+                    $scope.showerror = true;
+                }
+            }else{
+                $scope.loginuser.username = null;
+                $scope.loginuser.password = null;
+                $scope.error = "Please get an autorised username";
+                $scope.showerror = true;
+            }
     };
 });

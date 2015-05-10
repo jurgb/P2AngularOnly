@@ -2,7 +2,7 @@ var app = angular.module('MPDapp', ['ngMaterial', 'ngRoute'], function($interpol
         $interpolateProvider.startSymbol('<%');
         $interpolateProvider.endSymbol('%>');
 });
-app.config(function($routeProvider, $mdThemingProvider) {
+app.config(function($routeProvider, $mdThemingProvider ) {
 
     $routeProvider
         .when('/',
@@ -60,4 +60,5 @@ app.config(function($routeProvider, $mdThemingProvider) {
           'hue-2': '100', // use shade 600 for the <code>md-hue-2</code> class
           'hue-3': '300' // use shade A100 for the <code>md-hue-3</code> class
         })
+
     });
