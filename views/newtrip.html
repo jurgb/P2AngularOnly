@@ -15,17 +15,17 @@
             </div>          
         </md-toolbar>
 <md-content layout="row" flex   class="homepage">
-        <div style="background-color:rgba(0,0,0,0.4);" layout-fill layout="column" layout-align="start center">
-   <form style="max-width:600px;" class="userform md-whiteframe-z2"  layout="column" name="userForm" layout-align="start center">
-    <div  layout="column" layout-align="center center">    
-                        <h2 style="margin-bottom:0px;">Trip settings</h2>
-                        <p style="margin-top:0px;font-size:12px;">(Fill in dates before moving on)</p>
+        <div style="background-color:rgba(0,0,0,0.4);" layout-fill>
+   <form style="max-width:550px; margin-left:auto; margin-right:auto;" class="userform md-whiteframe-z2" layout-padding layout-align="center center"  layout="row" name="userForm" >
+    <div  layout="column">    
+                        <h2 style="margin-bottom:0px; text-align:center;">Trip settings</h2>
+                        <p style="margin-top:0px;font-size:12px; text-align:center;">(Fill in dates before moving on)</p>
                         <div layout-sm="column" layout="row">
-                            <md-input-container flex>
+                            <md-input-container >
                               <label>Departure data</label>
                               <input type="date" ng-model="tripsettings.departure">
                             </md-input-container>
-                            <md-input-container flex>
+                            <md-input-container >
                               <label>Return Date</label>
                               <input type="date" ng-model="tripsettings.return">
                             </md-input-container>
