@@ -1,4 +1,4 @@
-app.controller("AngMpdController", function($scope, APIservice, $mdSidenav, $mdDialog, $http, user){
+app.controller("AngMpdController", function($scope, APIservice, $mdSidenav, $mdDialog, $http, user, trip, $filter){
     
 //*******************
 // INIT LOADING
@@ -11,7 +11,6 @@ $scope.error = null;
 //******************* 
 $scope.activitycategories = [];
 $scope.departurepoints = [];
-    
 $scope.cardestinations = [];
 $scope.skidestinations = [];
 $scope.flydestinations = [];
@@ -19,8 +18,9 @@ $scope.sundestinations = [];
 
 $scope.selectedUsertab = null;
 $scope.selectedVacType = null;
-$scope.booktrip = null;
-    
+
+$scope.tripsettings = trip.getPeopleResponse();
+
 // USER
 $scope.user = user.getPeopleResponse();
 //$scope.user = {
@@ -163,27 +163,19 @@ function selectUsertab(muppet) {
 $scope.vacationtypes = [{
       id:'1',
       name: 'Car vacations',
-      iconurl: './assets/images/icons/car.svg',
-      filter: 'carVacationFilter',
-      apicall: 'cardestinations'
+      iconurl: './assets/images/icons/car.svg'
   }, {
       id:'2',
       name: 'Ski vacations',
-      iconurl: './assets/images/icons/ski.svg',
-      filter: 'skiVacationFilter',
-      apicall: 'destinations'
+      iconurl: './assets/images/icons/ski.svg'
   }, {
       id:'3',
       name: 'Sun vacations',
-      iconurl: './assets/images/icons/sun.svg',
-      filter: 'carVacationFilter',
-      apicall: 'cardestinations'
+      iconurl: './assets/images/icons/sun.svg'
   }, {
       id:'4',
       name: 'Fly vacations',
-      iconurl: './assets/images/icons/plane.svg',
-      filter: 'carVacationFilter',
-      apicall: 'cardestinations'
+      iconurl: './assets/images/icons/plane.svg'
   }];
 $scope.selectedVacType = $scope.vacationtypes[0];
 $scope.selectVacType = selectVacType;
@@ -191,7 +183,28 @@ function selectVacType(muppet) {
     $scope.selectedVacType = angular.isNumber(muppet) ? $scope.vacationtypes[muppet] : muppet;
     $scope.loading = "true";
     $scope.toggleSidenav('left');
-  }
+}
+    
+//*******************
+// Basic trip settings
+//*******************    
+$scope.plantrip = function(add){
+        console.log("test");
+//        var data = {
+//            return: $filter('date')($scope.newtrip.departure, "yyyy-MM-dd"),
+//            departure:$filter('date')($scope.newtrip.return, "yyyy-MM-dd"),
+//            budget:$scope.newtrip.budget
+//        }
+//        console.log(data);
+    trip.savePeopleResponse($scope.tripsettings);
+//        $scope.tripsettings.departure = $filter('date')($scope.newtrip.departure, "yyyy/MM/dd");
+//        $scope.tripsettings.return = $filter('date')($scope.newtrip.return, "yyyy/MM/dd");
+//        $scope.tripsettings.budget = $scope.newtrip.budget;
+//        console.log($scope.tripsettings.departure);
+//        console.log($scope.tripsettings.return);
+//        console.log($scope.tripsettings.budget);
+        window.location = "#/results";
+    };
 //*******************
 // SIDENAV TOGGLE
 //******************* 
@@ -208,7 +221,7 @@ $scope.toggleSidenav = toggleSidenav;
     {
     // Do some tests
 
-    if(dest.distance.miles < 1500)
+    if(dest.distance.miles < 900)
     {
         return true; // this will be listed in the results
     }
@@ -216,17 +229,6 @@ $scope.toggleSidenav = toggleSidenav;
     return false; // otherwise it won't be within the results
     };
     
-    $scope.skiVacationFilter = function(dest)
-    {
-    // Do some tests
-
-    if(dest.distance.miles > 0)
-    {
-        return true; // this will be listed in the results
-    }
-
-    return false; // otherwise it won't be within the results
-    };
 //*******************
 // API CALLS
 //*******************    
@@ -242,15 +244,7 @@ $scope.activitycat = function(){
 			})
             .error(function(){
                 console.log("fail");
-                $mdDialog.show(
-                  $mdDialog.alert()
-                    .parent(angular.element(document.body))
-                    .title('Error!')
-                    .content('the connection to the databank seems to be interupted!')
-                    .ariaLabel('Alert Dialog')
-                    .ok('Close')
-                    .targetEvent(ev)
-                );
+                $scope.loading = false;
             });
 };
     $scope.departures = function(){
@@ -259,53 +253,37 @@ $scope.activitycat = function(){
 			.success(function(data){
                 
 				$scope.departurepoints = data;
-
                 console.log(data);
                 
 			})
             .error(function(){
                 console.log("fail");
-                $mdDialog.show(
-                  $mdDialog.alert()
-                    .parent(angular.element(document.body))
-                    .title('Error!')
-                    .content('the connection to the databank seems to be interupted!')
-                    .ariaLabel('Alert Dialog')
-                    .ok('Close')
-                    .targetEvent(ev)
-                );
+                $scope.loading = false;
             });
-    };
+};
 
     $scope.cardestinations = function(){
+        console.log($scope.tripsettings);
       //Alle notifications binnehalen en in scope stoppen
-        params = {'UxplrSearch[departurePoint]':'BRU','UxplrSearch[dateFrom]':'2015-07-07','UxplrSearch[dateTo]':'2015-07-14', 'UxplrSearch[requiredActivities]':'','UxplrSearch[optionalActivities]':'1, 134, 21'};
+        params = {'UxplrSearch[departurePoint]':$scope.user.departurepoint,'UxplrSearch[dateFrom]':$scope.tripsettings.departurestring,'UxplrSearch[dateTo]':$scope.tripsettings.returnstring, 'UxplrSearch[requiredActivities]':'','UxplrSearch[optionalActivities]':'1, 134, 21'};
 		APIservice.destinations(params)
 			.success(function(data){
                 
 				$scope.cardestinations = data;
 
                 console.log(data);
-            $scope.loading = false;
+                $scope.loading = false;
                 
 			})
             .error(function(){
                 console.log("fail");
-                $mdDialog.show(
-                  $mdDialog.alert()
-                    .parent(angular.element(document.body))
-                    .title('Error!')
-                    .content('the connection to the databank seems to be interupted!')
-                    .ariaLabel('Alert Dialog')
-                    .ok('Close')
-                    .targetEvent(ev)
-                );
-            });
+                $scope.loading = false;
+        });
     };
     
     $scope.skidestinations = function(){
       //Alle notifications binnehalen en in scope stoppen
-        params = {'UxplrSearch[departurePoint]':'BRU','UxplrSearch[dateFrom]':'2015-07-07','UxplrSearch[dateTo]':'2015-07-14','UxplrSearch[temperature]':'{"0":{"min":"cold","max":"cool"}}','UxplrSearch[requiredActivities]':'112'};
+        params = {'UxplrSearch[departurePoint]':$scope.user.departurepoint,'UxplrSearch[dateFrom]':$scope.tripsettings.departurestring,'UxplrSearch[dateTo]':$scope.tripsettings.returnstring,'UxplrSearch[temperature]':'{"0":{"min":"cold","max":"cool"}}','UxplrSearch[requiredActivities]':'112'};
 		APIservice.destinations(params)
 			.success(function(data){
                 
@@ -318,20 +296,11 @@ $scope.activitycat = function(){
             .error(function(){
                 console.log("fail");
                 $scope.loading = false;
-                $mdDialog.show(
-                  $mdDialog.alert()
-                    .parent(angular.element(document.body))
-                    .title('Error!')
-                    .content('the connection to the databank seems to be interupted!')
-                    .ariaLabel('Alert Dialog')
-                    .ok('Close')
-                    .targetEvent(ev)
-                );
             });
     };
     $scope.sundestinations = function(){
       //Alle notifications binnehalen en in scope stoppen
-        params = {'UxplrSearch[departurePoint]':'BRU','UxplrSearch[dateFrom]':'2015-07-07','UxplrSearch[dateTo]':'2015-07-14','UxplrSearch[temperature]':'{"0":{"min":"warm","max":"hot"}}'};
+        params = {'UxplrSearch[departurePoint]':$scope.user.departurepoint,'UxplrSearch[dateFrom]':$scope.tripsettings.departurestring,'UxplrSearch[dateTo]':$scope.tripsettings.returnstring,'UxplrSearch[temperature]':'{"0":{"min":"warm","max":"hot"}}'};
 		APIservice.destinations(params)
 			.success(function(data){
                 
@@ -343,20 +312,12 @@ $scope.activitycat = function(){
 			})
             .error(function(){
                 console.log("fail");
-                $mdDialog.show(
-                  $mdDialog.alert()
-                    .parent(angular.element(document.body))
-                    .title('Error!')
-                    .content('the connection to the databank seems to be interupted!')
-                    .ariaLabel('Alert Dialog')
-                    .ok('Close')
-                    .targetEvent(ev)
-                );
-            });
+                $scope.loading = false;
+        });
     };
         $scope.flydestinations = function(){
       //Alle notifications binnehalen en in scope stoppen
-        params = {'UxplrSearch[departurePoint]':'BRU','UxplrSearch[dateFrom]':'2015-07-07','UxplrSearch[dateTo]':'2015-07-14', 'UxplrSearch[requiredActivities]':'','UxplrSearch[optionalActivities]':'1, 134, 21'};
+        params = {'UxplrSearch[departurePoint]':$scope.user.departurepoint,'UxplrSearch[dateFrom]':$scope.tripsettings.departurestring,'UxplrSearch[dateTo]':$scope.tripsettings.returnstring, 'UxplrSearch[requiredActivities]':'','UxplrSearch[optionalActivities]':'1, 134, 21'};
 		APIservice.destinations(params)
 			.success(function(data){
                 
@@ -368,16 +329,8 @@ $scope.activitycat = function(){
 			})
             .error(function(){
                 console.log("fail");
-                $mdDialog.show(
-                  $mdDialog.alert()
-                    .parent(angular.element(document.body))
-                    .title('Error!')
-                    .content('the connection to the databank seems to be interupted!')
-                    .ariaLabel('Alert Dialog')
-                    .ok('Close')
-                    .targetEvent(ev)
-                );
-            });
+                $scope.loading = false;
+        });
     };
 //*******************
 // DIALOG MESSAGES
@@ -385,8 +338,10 @@ $scope.activitycat = function(){
 
 $scope.showAdvanced = function(data) {
     $mdDialog.show({
+        parent: angular.element(document.body),
         controller: DialogController,
         templateUrl: './views/dialog/dialog.html',
+        disableParentScroll: false,
         locals: {
             item: data
         }
@@ -435,7 +390,7 @@ function DialogController($scope, $mdDialog, item) {
         $scope.showerror = false;
             if ($scope.loginuser.username == "jurgb") {
                 if ($scope.loginuser.password == "3imda") {
-                    window.location = "#/app";
+                    window.location = "#/profile";
                 }else{
                     $scope.loginuser.username = null;
                     $scope.loginuser.password = null;
@@ -443,10 +398,21 @@ function DialogController($scope, $mdDialog, item) {
                     $scope.showerror = true;
                 }
             }else{
-                $scope.loginuser.username = null;
-                $scope.loginuser.password = null;
-                $scope.error = "Please get an autorised username";
-                $scope.showerror = true;
+                if ($scope.loginuser.username == "Jurgb") {
+                    if ($scope.loginuser.password == "3imda") {
+                        window.location = "#/profile";
+                    }else{
+                        $scope.loginuser.username = null;
+                        $scope.loginuser.password = null;
+                        $scope.error = "Please provide a valid password ";
+                        $scope.showerror = true;
+                    }
+                }else{
+                    $scope.loginuser.username = null;
+                    $scope.loginuser.password = null;
+                    $scope.error = "Please get an autorised username";
+                    $scope.showerror = true;
+                }
             }
     };
 });

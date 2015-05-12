@@ -4,7 +4,7 @@
                 </button>
                 <h1 class="md-toolbar-tools titelmpd" hide-sm><img src="./assets/images/logo.png"></h1>
             <div flex class="md-toolbar-tools" layout="row" layout-align="end">
-                   <a class="menulink" href="#/app">Home</a>                
+                   <a class="menulink" href="#/tripsettings">New trip</a>                
                     
                 <a class="menulink borderleft" href="#/profile">
                     <% user.firstName + ' ' + user.lastName %>
@@ -17,6 +17,7 @@
         <div flex layout="row">
             <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
                 <md-list layout="column" class="categorie-list">
+<!--
                     <md-item ng-repeat="it in vacationtypes">
                         <md-item-content>
                             <md-button ng-click="selectVacType(it)" ng-class="{'selected' : it === selectedVacType }">
@@ -25,6 +26,46 @@
                             </md-button>
                         </md-item-content>
                     </md-item>
+-->
+              <md-item>
+                        <md-item-content>
+                            <md-button ng-click="selectVacType(0)" ng-class="{'selected' : vacationtypes[0] === selectedVacType }">
+                                <img ng-src="./assets/images/icons/car.svg" class="face" alt="">
+                                Car vacation
+                            </md-button>
+                        </md-item-content>
+                </md-item>
+               <md-item>
+                        <md-item-content>
+                            <md-button ng-click="selectVacType(1)" ng-class="{'selected' : vacationtypes[1] === selectedVacType }">
+                                <img ng-src="./assets/images/icons/ski.svg" class="face" alt="">
+                                Ski vacation
+                            </md-button>
+                        </md-item-content>
+                </md-item>
+                <md-item>
+                        <md-item-content>
+                            <md-button ng-click="selectVacType(2)" ng-class="{'selected' : vacationtypes[2] === selectedVacType }">
+                                <img ng-src="./assets/images/icons/sun.svg" class="face" alt="">
+                                Sun vacation
+                            </md-button>
+                        </md-item-content>
+                </md-item>
+                <md-item>
+                        <md-item-content>
+                            <md-button ng-click="selectVacType(3)" ng-class="{'selected' : vacationtypes[3] === selectedVacType }">
+                                <img ng-src="./assets/images/icons/plane.svg" class="face" alt="">
+                                Fly vacation
+                            </md-button>
+                        </md-item-content>
+                </md-item>
+                <md-item>
+                    <md-item-content>
+                            <md-button class="bordertop"  href="#/newtrip">
+                                <p layout-fill layout="row" layout-align="center center">Change trip settings</p>
+                            </md-button>
+                    </md-item-content>
+                </md-item>
                 </md-list>
             </md-sidenav>
             <md-content layout="column" flex>
@@ -58,7 +99,7 @@
 <!-- car vakanties -->  
                         <div layout="row" ng-switch-when="1" layout-wrap>
                             <md-list id="destinationlist" layout="row" layout-wrap layout-align="center start"  ng-init="cardestinations()" >                        
-                        <md-item ng-repeat="dest in cardestinations">
+                        <md-item ng-repeat="dest in cardestinations | filter:carVacationFilter">
                           
                             <md-item-content>
                                 <md-button class="md-primary"  ng-click="showAdvanced(dest)">
@@ -67,7 +108,7 @@
                                  <md-card-content style="width:100%;display:inline-block;" layout="row" >
                                        <span style="margin-bottom:10px;margin-top:10px;display:inline-block;width:70%;" layout="column" layout-align="start center">
                                            <span style="display:block;"><% dest.name  %></span>
-                                           <span style="display:block;">Vanaf <% dest.priceDetails.food + dest.priceDetails.hotel | currency:'€ ' %></span>
+                                           <span style="display:block;"><% dest.distance.miles %></span>
                                         </span>
                                  </md-card-content>
                                 </md-card>

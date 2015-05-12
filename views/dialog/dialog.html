@@ -2,17 +2,35 @@
   <md-dialog-content class="sticky-container">
     <md-subheader class="md-sticky-no-effect">More information</md-subheader>
     <div layout="column" layout-fill>
-      <img src="<% item.image %>" alt="Picture of <% item.name %>">
-      <div layout-wrap layout-margin layout="column">
-      <h2><% item.name %></h2>
-      <h4><% item.region %></h4>
-      <p>
-      <% item.description %>
-      It is located aprox. <% item.distance.miles %> miles (~<% item.distance.miles * 1.609344 |number:0 %> km) away from your current location.
-      The locally used currency is <% item.currency.symbol %>.
-      This location matches with you for <% item.matchrate.total %>.
-      The cost of this trip contains both the flight (<% item.priceDetails.flight %>) and the cost to stay there( <% item.priceDetails.food + item.priceDetails.hotel | currency:'€ ' %>).
-      </p>
+        <div layout-margin layout-padding layout="row">
+            <div flex layout="column">
+                <span layout="row">
+                    <h2><% item.name %></h2>&nbsp;
+                    <h4>(<% item.region %>)</h4>
+                </span>
+                
+                <p><% item.description %></p>
+            </div>
+             <img flex="33" src="<% item.image %>" alt="Picture of <% item.name %>">
+        </div>
+        <div layout-margin layout-fill layout="row">
+        <span class="destdetailspan"  layout-padding flex layout="column">
+            <h4>Distance</h4>
+            <span><% item.distance.miles %> miles (~<% item.distance.miles * 1.609344 |number:0 %> km)</span>
+        </span>
+        <span class="destdetailspan"  layout-padding flex layout="column">
+            <h4>Currency</h4>
+            <span><% item.currency.name %> (<% item.currency.symbol %>)</span>
+        </span>
+        <span  class="destdetailspan" layout-padding flex layout="column">
+            <h4>Matchrate</h4>
+            <span>matches you for <% item.matchrate.total %>%</span>
+        </span>
+        <span class="destdetailspan"  layout-padding flex layout="column">
+            <h4>Price</h4>
+            <span> flight (<% item.priceDetails.flight | currency:'€ ' %>)</span>
+            <span> Stay ( <% item.priceDetails.food + item.priceDetails.hotel | currency:'€ ' %>)</span>
+        </span>
     </div>
     </div>
   </md-dialog-content>

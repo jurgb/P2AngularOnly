@@ -106,6 +106,7 @@ https://github.com/google/material-design-icons
         text-align: left;
         width: 100%;
         height: 70px;
+        display: block;
     }
     .categorie-list .selected {
       color: #48bebc;
@@ -153,7 +154,7 @@ https://github.com/google/material-design-icons
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    min-height: 250px;
+    min-height: 200px;
 }
 .besttime
 {
@@ -244,28 +245,25 @@ section.md-tabs-content md-content.md-default-theme{
     background-color: rgba(0,0,0,0);
     color: red;
 }
-
-/*DELETE THIS LATER*/
-
-.dialogdemoBasicUsage .dialogDemo1 {
-  height: 500px; }
-.dialogdemoBasicUsage .full {
-  width: 100%;
-  height: 100%; }
-.dialogdemoBasicUsage .dialog-demo-content div {
-  text-align: center; }
-.dialogdemoBasicUsage .dialog-demo-content div .md-button {
-  display: inline-block; }
-.dialogdemoBasicUsage md-dialog md-dialog-content.sticky-container {
-  padding: 0; }
-.dialogdemoBasicUsage md-dialog md-dialog-content.sticky-container > div {
-  padding: 0 24px 24px; }
-.dialogdemoBasicUsage .md-subheader {
-  background-color: #dcedc8;
-  margin: 0; }
-.dialogdemoBasicUsage h2.md-subheader.md-sticky-clone {
-  margin-right: 0;
-  margin-top: 0;
-  box-shadow: 0px 2px 4px 0 rgba(0, 0, 0, 0.16); }
-.dialogdemoBasicUsage h2 .md-subheader-content {
-  padding-left: 10px; }
+.destdetailspan{
+    border: 1px solid #efefef;
+    text-align: center;
+}
+.bordertop
+{
+    border-top: 1px dashed #48bebc;
+    border-bottom: 1px dashed #48bebc;
+}
+.whitetext
+{
+    color: #fff;   
+}
+.md-actions{
+    background-color: #fff;
+}
+md-dialog{
+    overflow: scroll;   
+}
+md-select-menu.md-default-theme md-option[selected]{
+    color: #fff;   
+}

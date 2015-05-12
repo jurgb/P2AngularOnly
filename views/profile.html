@@ -4,7 +4,7 @@
                 </button>
                 <h1 class="md-toolbar-tools titelmpd" hide-sm><img src="./assets/images/logo.png"></h1>
             <div flex class="md-toolbar-tools" layout="row" layout-align="end">
-                   <a class="menulink" href="#/app">Home</a>                
+                   <a class="menulink" href="#/newtrip">New trip</a>                
                     
                 <a class="menulink borderleft" href="#/profile">
                     <% user.firstName + ' ' + user.lastName %>
@@ -28,7 +28,7 @@
                 </md-list>
             </md-sidenav>
             <div layout-fill ng-switch="selectedUsertab.id">
-                <md-content ng-switch-when="1" layout="column" flex ng-init="activitycat()">
+                <md-content ng-switch-when="1" layout="column" flex>
                     <div layout-fill layout-align="center center" layout="column">
                         <form class="userform" layout-padding name="userForm">
                           <div layout layout-sm="column">
@@ -68,7 +68,7 @@
                     </div>
                 </md-content>
                 
-                <md-content ng-switch-when="2" layout="row" layout-align="center center" ng-init="activitycat()">
+                <md-content ng-switch-when="2" layout="row" layout-align="center center">
                     
                 <form class="userform" layout-padding layout="column" name="userForm">
                     <div layout="column" layout-align="center center">
@@ -80,19 +80,19 @@
                             <md-checkbox ng-model="user.travel.cartravel" class="md-primary">Cartravel</md-checkbox>
                             <md-checkbox ng-model="user.travel.boattravel" class="md-primary">Boattravel</md-checkbox>
                         </div>
-                        <md-select placeholder="<% user.departurepoint.label %>" ng-model="user.departurepoint" ng-init="departures()">
-                            <md-option class="md-primary" ng-repeat="dep in departurepoints" value="<% dep %>"><% dep.label %></md-option>
+                        <md-select placeholder="Choose the nearsest airport" ng-model='user.departurepoint' ng-init="departures()">
+                            <md-option class="md-primary" ng-repeat="dep in departurepoints" value='<% dep.value %>'><% dep.label %></md-option>
                         </md-select>
                         </div>
                         <div layout="column" layout-fill layout-align="center center">
                             <h2>Hotel settings</h2>
                             Minimum stars
                             <div layout="row" layout-fill layout-align="space-around">
-                                <md-slider flex md-discrete ng-model="user.hotelmin" min="1" max="5" aria-label="green" id="green-slider" class="md-primary"></md-slider>
+                                <md-slider flex md-discrete ng-model="user.hotelmin" step="0.5" min="0" max="5" aria-label="green" id="green-slider" class="md-primary"></md-slider>
                             </div>
                             Maximum stars
                             <div layout="row" layout-fill layout-align="space-around">
-                                <md-slider flex md-discrete ng-model="user.hotelmax" min="1" max="5" aria-label="green" id="green-slider" class="md-primary"></md-slider>
+                                <md-slider flex md-discrete ng-model="user.hotelmax" step="0.5" min="0" max="5" aria-label="green" id="green-slider" class="md-primary"></md-slider>
                             </div>
                             How good should the food be
                             <div layout="row" layout-fill layout-align="space-around">

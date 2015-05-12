@@ -7,12 +7,9 @@ app.factory('user', function() {
         city: 'Schelle' ,
         biography: 'I created this app',
         postalCode : '2627',
-        hotelmin: "1",
+        hotelmin: "0",
         hotelmax: "5",
-        departurepoint:{
-            label: 'Brussels (BRU)',
-            value: 'BRU'
-        },
+        departurepoint:'BRU',
         food:"7",
         travel:{
             airtravel:true,

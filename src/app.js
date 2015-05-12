@@ -15,7 +15,12 @@ app.config(function($routeProvider, $mdThemingProvider ) {
                 controller: 'AngMpdController',
                 templateUrl: './views/signup.html'
             })
-        .when('/app',
+        .when('/newtrip',
+            {
+                controller: 'AngMpdController',
+                templateUrl: './views/newtrip.html'
+            })
+        .when('/results',
             {
                 controller: 'AngMpdController',
                 templateUrl: './views/destinations.html'
