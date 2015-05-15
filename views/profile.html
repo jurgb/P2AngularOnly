@@ -1,10 +1,10 @@
-        <md-toolbar class="md-primary md-hue-3" layout="row">
+        <md-toolbar class="md-primary" layout="row">
                 <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
                     <span class="visuallyhidden">Menu</span>
                 </button>
                 <h1 class="md-toolbar-tools titelmpd" hide-sm><img src="./assets/images/logo.png"></h1>
             <div flex class="md-toolbar-tools" layout="row" layout-align="end">
-                   <a class="menulink" href="#/newtrip">New trip</a>                
+                   <a ng-disabled="user.travel.airtravel = false" class="menulink" href="#/trip">New trip</a>                
                     
                 <a class="menulink borderleft" href="#/profile">
                     <% user.firstName + ' ' + user.lastName %>
@@ -102,6 +102,7 @@
                     </div>      
                 </form>
                 </md-content>
+<!--
                 <md-content ng-switch-when="3" layout="column" layout-fill layout-align="start center" ng-init="activitycat()">
 
                        <div layout="column" >
@@ -120,6 +121,97 @@
     
                             
                             
+                        </div>
+                        </md-tabs>
+                        </div>
+                </md-content>
+-->
+           <md-content ng-switch-when="3" layout="column" layout-fill layout-align="start center" ng-init="activitycat()">
+                       <div layout="column" style="max-width:800px; " layout-fill layout-align="start center">
+                       <md-tabs md-dynamic-height style="overflow:hidden;" layout-fill >
+                        <div layout-fill  layout="row">
+                            
+                            <md-tab  class="md-primary"  label="Nature">
+                                <md-content class="md-padding" layout-wrap>
+                                    <h1>Nature</h1>
+                                    <div layout='row' layout-sm="column"  layout-wrap>
+                                        <div layout-padding ng-repeat="naturechoice in naturechoices">
+                                            <label style="width:250px; display:inline-block">
+                                            <input type="checkbox" class="md-primary " checklist-model="user.selectedActivities" checklist-value="naturechoice.id">  <% naturechoice.name %></input></label>            </div>
+                                    </div>
+                                </md-content>
+                            </md-tab>
+                            <md-tab  class="md-primary"  label="History">
+                                <md-content class="md-padding">
+                                  <h1>History</h1>
+                                    <div layout='row' layout-sm="column"  layout-wrap>
+                                       <div layout-padding ng-repeat="historychoice in historychoices">
+<label style="width:250px; display:inline-block">
+                                           <input type="checkbox"  class="md-primary" checklist-model="user.selectedActivities" checklist-value="historychoice.id">  <% historychoice.name %></input></label>    </div>
+                                    </div>
+                                </md-content>
+                            </md-tab>
+                           <md-tab  class="md-primary"  label="Museums">
+                            
+                                <md-content class="md-padding">
+                                  <h1>Museums</h1>
+                                    <div layout='row' layout-sm="column"  layout-wrap>
+                                       <div layout-padding ng-repeat="museumchoice in museumchoices">
+<label style="width:250px; display:inline-block">
+                                           <input type="checkbox"  class="md-primary" checklist-model="user.selectedActivities" checklist-value="museumchoice.id">  <% museumchoice.name %></input></label> </div>
+                                    </div>
+                                </md-content>
+                            </md-tab>
+                            <md-tab  class="md-primary"  label="Activities">
+                                <md-content class="md-padding">
+                                  <h1>Activities</h1>
+                                    <div layout='row' layout-sm="column"  layout-wrap>
+                                       <div layout-padding ng-repeat="activitieschoice in activitieschoices">
+<label style="width:250px; display:inline-block">
+                                           <input type="checkbox"  class="md-primary" checklist-model="user.selectedActivities" checklist-value="activitieschoice.id">  <% activitieschoice.name %></input></label> </div>
+                                    </div>
+                                </md-content>
+                            </md-tab>
+                            <md-tab  class="md-primary"  label="Architecture">
+                                <md-content class="md-padding">
+                                  <h1>Architecture</h1>
+                                    <div layout='row' layout-sm="column"  layout-wrap>
+                                       <div layout-padding ng-repeat="buildingschoice in buildingschoices">
+<label style="width:250px; display:inline-block">
+                                           <input type="checkbox"  class="md-primary" checklist-model="user.selectedActivities" checklist-value="buildingschoice.id">  <% buildingschoice.name %></input></label></div>
+                                    </div>
+                                </md-content>
+                            </md-tab>
+                            <md-tab  class="md-primary"  label="Sports">
+                                <md-content class="md-padding">
+                                  <h1>Sports</h1>
+                                    <div layout='row' layout-sm="column"  layout-wrap>
+                                       <div layout-padding ng-repeat="sportschoice in sportschoices">
+                                          <label style="width:250px; display:inline-block">
+                                           <input type="checkbox"  class="md-primary" checklist-model="user.selectedActivities" checklist-value="sportschoice.id">  <% sportschoice.name %></input></label> </div>
+                                    </div>
+                                </md-content>
+                            </md-tab>
+                            <md-tab  class="md-primary"  label="Tourist spots">
+                                <md-content class="md-padding">
+                                  <h1>Tourist spots</h1>
+                                    <div layout='row' layout-sm="column"  layout-wrap>
+                                       <div layout-padding ng-repeat="touristschoice in touristschoices">
+<label style="width:250px; display:inline-block">
+                                           <input type="checkbox"  class="md-primary" checklist-model="user.selectedActivities" checklist-value="touristschoice.id">  <% touristschoice.name %></input></label> </div>
+                                    </div>
+                                </md-content>
+                            </md-tab>
+                            <md-tab  class="md-primary"  label="Events">
+                                <md-content class="md-padding">
+                                  <h1>Events</h1>
+                                    <div layout='row' layout-sm="column"  layout-wrap>
+                                       <div layout-padding ng-repeat="eventschoice in eventschoices">
+<label style="width:250px; display:inline-block">
+                                           <input type="checkbox"  class="md-primary" checklist-model="user.selectedActivities" checklist-value="eventschoice.id">  <% eventschoice.name %></input></label> </div>
+                                    </div>
+                                </md-content>
+                            </md-tab>
                         </div>
                         </md-tabs>
                         </div>

@@ -1,6 +1,6 @@
 <md-dialog aria-label="More information">
   <md-dialog-content class="sticky-container">
-    <md-subheader class="md-sticky-no-effect">More information</md-subheader>
+    <md-subheader class="md-sticky-no-effect ">More information</md-subheader>
     <div layout="column" layout-fill>
         <div layout-margin layout-padding layout="row">
             <div flex layout="column">
@@ -20,11 +20,16 @@
         </span>
         <span class="destdetailspan"  layout-padding flex layout="column">
             <h4>Currency</h4>
-            <span><% item.currency.name %> (<% item.currency.symbol %>)</span>
+            <span>Name:<% item.currency.name %></span>
+            <span>Symbol:<% item.currency.symbol %></span>
+            <span>ISO-code:<% item.currency.isoCode  %></span>
         </span>
         <span  class="destdetailspan" layout-padding flex layout="column">
-            <h4>Matchrate</h4>
-            <span>matches you for <% item.matchrate.total %>%</span>
+            <h4>Matchrate (<% item.matchrate.total %>%)</h4>
+            <span ng-if="item.matchrate.weather">Weather: <% item.matchrate.weather %>% </span>
+            <span ng-if="item.matchrate.sentiment">Surroundings: <% item.matchrate.sentiment %>% </span> 
+            <span ng-if="item.matchrate.activity">Activities: <% item.matchrate.activity %> %</span>
+            <span ng-if="item.raw.food">Food: <% item.raw.food %> %</span>
         </span>
         <span class="destdetailspan"  layout-padding flex layout="column">
             <h4>Price</h4>
@@ -39,7 +44,7 @@
      Go back
     </md-button>
     <md-button ng-click="answer(item)" class="md-primary">
-      Book flight
+      Book trip
     </md-button>
   </div>
 </md-dialog>

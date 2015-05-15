@@ -33,15 +33,15 @@ https://github.com/google/material-design-icons
     }
     /*menu btn*/
     .menuBtn {
-      background: transparent url("../images/icons/settings.svg") no-repeat  center center;
+      background: transparent url("../images/logoblue.png") no-repeat  center center;
     }
     .menuBtn {
       background-color: transparent;
         background-size: contain;
       border: none;
-      height: 30px;
-      margin: 16px 0 0 16px;
-      width: 30px;
+      height: 45px;
+      margin: 10px 0 0 10px;
+      width: 45px;
     }
     .visuallyhidden {
       border: 0;
@@ -266,4 +266,7 @@ md-dialog{
 }
 md-select-menu.md-default-theme md-option[selected]{
     color: #fff;   
+}
+md-toolbar.md-default-theme{
+    background-color: #fff;   
 }

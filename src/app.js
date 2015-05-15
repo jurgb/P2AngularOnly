@@ -1,4 +1,4 @@
-var app = angular.module('MPDapp', ['ngMaterial', 'ngRoute'], function($interpolateProvider) {
+var app = angular.module('MPDapp', ['ngMaterial', 'ngRoute', "checklist-model"], function($interpolateProvider) {
         $interpolateProvider.startSymbol('<%');
         $interpolateProvider.endSymbol('%>');
 });
@@ -15,7 +15,7 @@ app.config(function($routeProvider, $mdThemingProvider ) {
                 controller: 'AngMpdController',
                 templateUrl: './views/signup.html'
             })
-        .when('/newtrip',
+        .when('/trip',
             {
                 controller: 'AngMpdController',
                 templateUrl: './views/newtrip.html'

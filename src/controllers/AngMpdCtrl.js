@@ -3,7 +3,7 @@ app.controller("AngMpdController", function($scope, APIservice, $mdSidenav, $mdD
 //*******************
 // INIT LOADING
 //*******************
-$scope.loading = "true";
+$scope.loading = false;
 $scope.showerror = false;
 $scope.error = null;
 //*******************
@@ -21,118 +21,103 @@ $scope.selectedVacType = null;
 
 $scope.tripsettings = trip.getPeopleResponse();
 
+    
+// ALL ACTIVITIES
+    
+$scope.naturechoices = [
+    {id: 23, name:'Caverns/caves'},
+    {id: 48, name:'Forests'},
+    {id: 51, name:'Gardens'},
+    {id: 53, name:'Geologic Formations'},
+    {id: 64, name:'Hot Springs/Geysers'},
+    {id: 65, name:'Islands'},
+    {id: 80, name:'Mountains'},
+    {id: 86, name:'Nature/wildlife Areas'},
+    {id: 102, name:'Reefs'},
+    {id: 106, name:'Scenic Drives'},
+    {id: 107, name:'Scenic Railroads'},
+    {id: 131, name:'Waterfalls'}
+];
+$scope.historychoices = [
+    {id: 2, name:'Ancient Ruins'},
+    {id: 24, name:'Cemeteries'},
+    {id: 59, name:'Historic Sites'},
+    {id: 60, name:'Historic Walking Areas'}
+];
+$scope.museumchoices = [
+    {id: 8, name:'Art Museums'},
+    {id: 25, name:"Children's Museums"},
+    {id: 61, name:'History museums'},
+    {id: 75, name:'Military museums'},
+    {id: 82, name:'Museums'},
+    {id: 89, name:'Planetariums'},
+    {id: 109, name:'Science Museums'},
+    {id: 114, name:'Specialty museums'}
+];
+$scope.activitieschoices = [
+    {id: 1, name:'Theme Parks'},
+    {id: 6, name:'Arenas/Stadiums'},
+    {id: 10, name:'Bar/clubs'},
+    {id: 16, name:'Bodies of water'},
+    {id: 21, name:"Casino's"},
+    {id: 37, name:'Dinner Theaters'},
+    {id: 41, name:'Educational Sites'},
+    {id: 45, name:'Farms'},
+    {id: 50, name:'Entertainement Centers'},
+    {id: 81, name:'Movie Theaters'},
+    {id: 103, name:'Religious Sites'},
+    {id: 121, name:'Theaters'},
+    {id: 123, name:'Trails'},
+    {id: 129, name:'Water Parks'},
+    {id: 133, name:'Wineries'},
+    {id: 134, name:'Zoos'}
+];
+$scope.buildingschoices = [
+    {id: 5 , name:'Architectural Buildings'},
+    {id: 19, name:'Bridges'},
+    {id: 22, name:'Castles'},
+    {id: 26, name:'Churches/cathedrals'},
+    {id: 49, name:'Fountains'},
+    {id: 69, name:'Libraries'}
+]
+$scope.sportschoices = [
+    {id: 13, name:'Biking Trails'},
+    {id: 55, name:'Golf Courses'},
+    {id: 57, name:'Health Clubs'},
+    {id: 58, name:'Hiking Trails'},
+    {id: 63, name:'Horseback Riding'},
+    {id: 116, name:'Sport Camps'},
+    {id: 117, name:'Sport Complexes'}
+];
+$scope.touristschoices = [
+    {id: 12, name:'Beaches'},
+    {id: 68, name:'Landmarks'},
+    {id: 71, name:'Lookouts'},
+    {id: 72, name:'Malls'},
+    {id: 78, name:'Monuments/Statues'},
+    {id: 84, name:'National Parks'},
+    {id: 88, name:'Observation Decks'},
+    {id: 95, name:'Parks'},
+    {id: 98, name:'Playgrounds'},
+    {id: 110, name:'Ships'},
+    {id: 111, name:'Shops'},
+    {id: 115, name:'Specialty Shops'},
+    {id: 118, name:'State Parks'},
+    {id: 132, name:'Piers/Boardwalks'}
+];
+$scope.eventschoices = [
+    {id: 7, name:'Art Galleries'},
+    {id: 31, name:'Concerts'},
+    {id: 44, name:'Factory Tours'},
+    {id: 92, name:'Operas'},
+    {id: 96, name:'Performances'},
+    {id: 122, name:'Tours'},
+];
+    
 // USER
 $scope.user = user.getPeopleResponse();
-//$scope.user = {
-//        email: 'Jurgenbarbier@gmail.com',
-//        firstName: 'Jurgen',
-//        lastName: 'Barbier' ,
-//        address: 'Heidestraat 88' ,
-//        city: 'Schelle' ,
-//        biography: 'I created this app',
-//        postalCode : '2627',
-//        hotelmin: "1",
-//        hotelmax: "5",
-//        departurepoint:{
-//            label: 'Brussels (BRU)',
-//            value: 'BRU'
-//        },
-//        food:"7",
-//        travel:{
-//            airtravel:true,
-//            cartravel:true,
-//            traintravel:false,
-//            boattravel:true
-//        },
-//        selectedData:{
-//            Attractions:{
-//                'Religious Sites': false,
-//                'Science Musueams':false,
-//                'Ships':true,
-//                'Specialty Museums':false,
-//                'Piers/Boardwalks':true,
-//                'Wineries':false,
-//                'Zoos':false,
-//                'Bridges':false,
-//                'Ancient Ruins':false,
-//                'Castles': true,
-//                'Cemeteries': false,
-//                "Children's Museums": false,
-//                'Churches/Cathedrals':true,
-//                'Aquariums': true,
-//                'Architectural Buildings': true,
-//                'Historic Sites':false,
-//                'Historic Museums':false,
-//                'Landmarks': true,
-//                'Art Gallaries': false,
-//                'Military Museums':false,
-//                'Monuments/Statues': true,
-//                'Art Museums': false,
-//                'Museums': false,
-//                'Natural History': false,
-//                'Neighborhoods': true,
-//                'Observation Decks': true,
-//                'Planetariums': true
-//            },
-//            Entertainment:{
-//                'Theme Parks':true,
-//                'Bar/Clubs':true,
-//                'Shops':true,
-//                'Specialty Shops':false,
-//                'Sports Camps':true,
-//                'Sport Complexes':true,
-//                'Theaters':false,
-//                'Tours':true,
-//                'Water Parks':true,
-//                'Casinos':false,
-//                'Concerts':false,
-//                'Dinner Theaters':false,
-//                'Educational Sites':false,
-//                'Factory Tours':false,
-//                'Entertainment Centers':true,
-//                'Golf Courses':false,
-//                'Health Clubs':true,
-//                'Arenas/Stadiums':false,
-//                'Liberaries':false,
-//                'Malls':true,
-//                'Movie Theaters':true,
-//                'Operas':false,
-//                'Performances':false,
-//                'Playgrounds':false,
-//            },
-//            Outdoors:{
-//                'Reefs':true,
-//                'Scenic Dives':true,
-//                'Scenic Railroads':false,
-//                'Historic Walking Areas':false,
-//                'Ski/Snowboard Areas':false,
-//                'State Parks':true,
-//                'Beaches':true,
-//                'Trails':false,
-//                'Biking Trails':false,
-//                'Waterfalls':true,
-//                'Bodies of Water':false,
-//                'Caverns/Caves':false,
-//                'Farms':false,
-//                'Forests':true,
-//                'Fountains':true,
-//                'Gardens':true,
-//                'Geologic Formations':true,
-//                'Hiking Trails':false,
-//                'Historic Walking Areas':false,
-//                'Horseback Riding':false,
-//                'Hot Springs/Geysers':true,
-//                'Islands':true,
-//                'Lookouts':false,
-//                'Mountains':true,
-//                'National Parks':true,
-//                'Nature/Wildlife Areas':false,
-//                'Parks':false,
-//            }
-//        },
-//        selectedActivities:"112, 123"
-//        
-//};
+
+
 //*******************
 // USERTABS
 //******************* 
@@ -162,18 +147,21 @@ function selectUsertab(muppet) {
 //*******************     
 $scope.vacationtypes = [{
       id:'1',
+      name: 'Select your vacationtype'
+  },{
+      id:'2',
       name: 'Car vacations',
       iconurl: './assets/images/icons/car.svg'
   }, {
-      id:'2',
+      id:'3',
       name: 'Ski vacations',
       iconurl: './assets/images/icons/ski.svg'
   }, {
-      id:'3',
+      id:'4',
       name: 'Sun vacations',
       iconurl: './assets/images/icons/sun.svg'
   }, {
-      id:'4',
+      id:'5',
       name: 'Fly vacations',
       iconurl: './assets/images/icons/plane.svg'
   }];
@@ -189,20 +177,7 @@ function selectVacType(muppet) {
 // Basic trip settings
 //*******************    
 $scope.plantrip = function(add){
-        console.log("test");
-//        var data = {
-//            return: $filter('date')($scope.newtrip.departure, "yyyy-MM-dd"),
-//            departure:$filter('date')($scope.newtrip.return, "yyyy-MM-dd"),
-//            budget:$scope.newtrip.budget
-//        }
-//        console.log(data);
-    trip.savePeopleResponse($scope.tripsettings);
-//        $scope.tripsettings.departure = $filter('date')($scope.newtrip.departure, "yyyy/MM/dd");
-//        $scope.tripsettings.return = $filter('date')($scope.newtrip.return, "yyyy/MM/dd");
-//        $scope.tripsettings.budget = $scope.newtrip.budget;
-//        console.log($scope.tripsettings.departure);
-//        console.log($scope.tripsettings.return);
-//        console.log($scope.tripsettings.budget);
+        trip.savePeopleResponse($scope.tripsettings);
         window.location = "#/results";
     };
 //*******************
@@ -265,7 +240,7 @@ $scope.activitycat = function(){
     $scope.cardestinations = function(){
         console.log($scope.tripsettings);
       //Alle notifications binnehalen en in scope stoppen
-        params = {'UxplrSearch[departurePoint]':$scope.user.departurepoint,'UxplrSearch[dateFrom]':$scope.tripsettings.departurestring,'UxplrSearch[dateTo]':$scope.tripsettings.returnstring, 'UxplrSearch[requiredActivities]':'','UxplrSearch[optionalActivities]':'1, 134, 21'};
+        params = {'UxplrSearch[departurePoint]':$scope.user.departurepoint,'UxplrSearch[dateFrom]':$scope.tripsettings.departurestring,'UxplrSearch[dateTo]':$scope.tripsettings.returnstring, 'UxplrSearch[requiredActivities]':'','UxplrSearch[optionalActivities]':$scope.user.selectedActivities, 'UxplrSearch[budget]': $scope.tripsettings.budget, 'UxplrSearch[sort]':'matchrate','UxplrSearch[sortOrder]':'desc', 'UxplrSearch[currency]':'EUR'};
 		APIservice.destinations(params)
 			.success(function(data){
                 
@@ -283,7 +258,8 @@ $scope.activitycat = function(){
     
     $scope.skidestinations = function(){
       //Alle notifications binnehalen en in scope stoppen
-        params = {'UxplrSearch[departurePoint]':$scope.user.departurepoint,'UxplrSearch[dateFrom]':$scope.tripsettings.departurestring,'UxplrSearch[dateTo]':$scope.tripsettings.returnstring,'UxplrSearch[temperature]':'{"0":{"min":"cold","max":"cool"}}','UxplrSearch[requiredActivities]':'112'};
+        params =
+{'UxplrSearch[departurePoint]':$scope.user.departurepoint,'UxplrSearch[dateFrom]':$scope.tripsettings.departurestring,'UxplrSearch[dateTo]':$scope.tripsettings.returnstring, 'UxplrSearch[requiredActivities]':'','UxplrSearch[optionalActivities]':$scope.user.selectedActivities, 'UxplrSearch[budget]': $scope.tripsettings.budget, 'UxplrSearch[sort]':'matchrate','UxplrSearch[sortOrder]':'desc','UxplrSearch[temperature]':'{"0":{"min":"cold","max":"cool"}}','UxplrSearch[requiredActivities]':'112', 'UxplrSearch[currency]':'EUR'};
 		APIservice.destinations(params)
 			.success(function(data){
                 
@@ -300,7 +276,8 @@ $scope.activitycat = function(){
     };
     $scope.sundestinations = function(){
       //Alle notifications binnehalen en in scope stoppen
-        params = {'UxplrSearch[departurePoint]':$scope.user.departurepoint,'UxplrSearch[dateFrom]':$scope.tripsettings.departurestring,'UxplrSearch[dateTo]':$scope.tripsettings.returnstring,'UxplrSearch[temperature]':'{"0":{"min":"warm","max":"hot"}}'};
+        params =
+{'UxplrSearch[departurePoint]':$scope.user.departurepoint,'UxplrSearch[dateFrom]':$scope.tripsettings.departurestring,'UxplrSearch[dateTo]':$scope.tripsettings.returnstring, 'UxplrSearch[requiredActivities]':'','UxplrSearch[optionalActivities]':$scope.user.selectedActivities, 'UxplrSearch[budget]': $scope.tripsettings.budget, 'UxplrSearch[sort]':'matchrate','UxplrSearch[sortOrder]':'desc','UxplrSearch[temperature]':'{"0":{"min":"warm","max":"hot"}}', 'UxplrSearch[currency]':'EUR'};
 		APIservice.destinations(params)
 			.success(function(data){
                 
@@ -317,7 +294,8 @@ $scope.activitycat = function(){
     };
         $scope.flydestinations = function(){
       //Alle notifications binnehalen en in scope stoppen
-        params = {'UxplrSearch[departurePoint]':$scope.user.departurepoint,'UxplrSearch[dateFrom]':$scope.tripsettings.departurestring,'UxplrSearch[dateTo]':$scope.tripsettings.returnstring, 'UxplrSearch[requiredActivities]':'','UxplrSearch[optionalActivities]':'1, 134, 21'};
+        params =
+{'UxplrSearch[departurePoint]':$scope.user.departurepoint,'UxplrSearch[dateFrom]':$scope.tripsettings.departurestring,'UxplrSearch[dateTo]':$scope.tripsettings.returnstring, 'UxplrSearch[requiredActivities]':'','UxplrSearch[optionalActivities]':$scope.user.selectedActivities, 'UxplrSearch[budget]': $scope.tripsettings.budget, 'UxplrSearch[sort]':'matchrate','UxplrSearch[sortOrder]':'desc', 'UxplrSearch[currency]':'EUR'};
 		APIservice.destinations(params)
 			.success(function(data){
                 

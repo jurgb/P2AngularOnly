@@ -17,6 +17,21 @@ app.factory('user', function() {
             traintravel:false,
             boattravel:true
         },
+        selectedActivities:[1]
+        
+};
+        return {
+            savePeopleResponse:function (data) {
+                peopleResponse = data;
+                console.log(data);
+            },
+            getPeopleResponse:function () {
+                return peopleResponse;
+            }
+        };
+});
+
+/*,
         selectedData:{
             Attractions:{
                 'Religious Sites': false,
@@ -102,17 +117,4 @@ app.factory('user', function() {
                 'Nature/Wildlife Areas':false,
                 'Parks':false,
             }
-        },
-        selectedActivities:"112, 123"
-        
-};
-        return {
-            savePeopleResponse:function (data) {
-                peopleResponse = data;
-                console.log(data);
-            },
-            getPeopleResponse:function () {
-                return peopleResponse;
-            }
-        };
-});
+        },*/
