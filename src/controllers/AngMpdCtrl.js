@@ -1,4 +1,4 @@
-app.controller("AngMpdController", function($scope, APIservice, $mdSidenav, $mdDialog, $http, user, trip, $filter){
+app.controller("AngMpdController", function($scope, APIservice, $mdSidenav, $mdDialog, $http, user, trip, $filter,booking){
     
 //*******************
 // INIT LOADING
@@ -20,7 +20,7 @@ $scope.selectedUsertab = null;
 $scope.selectedVacType = null;
 
 $scope.tripsettings = trip.getPeopleResponse();
-
+$scope.booktrip = booking.getPeopleResponse();
     
 // ALL ACTIVITIES
     
@@ -319,13 +319,13 @@ $scope.showAdvanced = function(data) {
         parent: angular.element(document.body),
         controller: DialogController,
         templateUrl: './views/dialog/dialog.html',
-        disableParentScroll: false,
+        disableParentScroll: true,
         locals: {
             item: data
         }
     })
     .then(function(answer) {
-        $scope.booktrip = answer;
+        booking.savePeopleResponse(answer);
         window.location = "#/book";
     });
 };

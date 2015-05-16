@@ -30,6 +30,11 @@ app.config(function($routeProvider, $mdThemingProvider ) {
                 controller: 'AngMpdController',
                 templateUrl: './views/profile.html'
             })
+        .when('/confirmed',
+            {
+                controller: 'AngMpdController',
+                templateUrl: './views/confirmed.html'
+            })
         //Define a route that has a route parameter in it (:customerID)
         .when('/book',
             {

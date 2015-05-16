@@ -7,7 +7,7 @@
                    <a class="menulink" href="#/trip">New trip</a>                
                     
                 <a class="menulink borderleft" href="#/profile">
-                    <% user.firstName + ' ' + user.lastName %>
+                    <% user.firstName %> <span hide-sm><% user.lastName %></span>
                 </a>
                 <span hide-sm class="profilepicwrapper">
                         <img class="profilepic" src="./assets/images/proflepics/me.png" alt="profile picture of Jurgen Barbier">
@@ -104,18 +104,23 @@
                         <md-item ng-repeat="dest in cardestinations | filter:carVacationFilter">
                           
                             <md-item-content>
-                                <md-button class="md-primary"  ng-click="showAdvanced(dest)">
-                               <md-card >
-                                     <img class="dest_img" src="<% dest.image %>" alt="<% dest.image %>">
-                                 <md-card-content style="width:100%;display:inline-block;" layout="row" >
-                                       <span style="margin-bottom:10px;margin-top:10px;display:inline-block;width:70%;" layout="column" layout-align="start center">
-                                           <span style="display:block;"><% dest.name  %></span>
-                                           <span style="display:block;"><% dest.distance.miles %></span>
-                                        </span>
-                                 </md-card-content>
-                                </md-card>
-                                </md-button>
-                            </md-item-content>
+                                       <md-button class="md-primary"  ng-click="showAdvanced(dest)">
+                                       <md-card >
+                                             <img class="dest_img" src="<% dest.image %>" alt="">
+                                         <md-card-content class="cardcontentcontainer" layout="row" >
+                                               <span layout="column" layout-align="center start">
+                                                   <span class="destinfospan"><% dest.name  %></span>
+                                                   <span class="destinfospan" >From <% dest.priceDetails.food + dest.priceDetails.hotel | currency:'€ ' %></span>
+                                                </span>
+                                                <span ng-if="dest.matchrate.total" class="matchperccontainer" layout="column" layout-align="center center">
+                                                    <p class="matchperctext"><% dest.matchrate.total | number:0 %>%</p>
+                                                    <span class="matchperctext">Match</span>
+                                                        <md-progress-circular md-diameter="70" style="margin-top:-40px;" class="md-primary" md-mode="determinate" value="<% dest.matchrate.total | number:0 %>">
+                                                </span>
+                                         </md-card-content>
+                                        </md-card>
+                                        </md-button>
+                                    </md-item-content>
                         </md-item>
                     </md-list>
                         </div>
@@ -127,14 +132,15 @@
                                        <md-button class="md-primary"  ng-click="showAdvanced(dest)">
                                        <md-card >
                                              <img class="dest_img" src="<% dest.image %>" alt="">
-                                         <md-card-content style="width:100%;display:inline-block;" layout="row" >
-                                               <span style="margin-bottom:10px;margin-top:10px;display:inline-block;width:70%;" layout="column" layout-align="start center">
-                                                   <span style="display:block;"><% dest.name  %></span>
-                                                   <span style="display:block;">From <% dest.priceDetails.food + dest.priceDetails.hotel | currency:'€ ' %></span>
+                                         <md-card-content class="cardcontentcontainer" layout="row" >
+                                               <span layout="column" layout-align="center start">
+                                                   <span class="destinfospan"><% dest.name  %></span>
+                                                   <span class="destinfospan" >From <% dest.priceDetails.food + dest.priceDetails.hotel | currency:'€ ' %></span>
                                                 </span>
-                                                <span style="margin-bottom:10px;margin-top:10px;display:inline-block;width:25%;" layout="column" class="matchperc" layout-align="end center">
-                                                    <p class="matchperctext"><% dest.matchrate.total | number:0 %>% match</p>
-                                                        <md-progress-circular md-diameter="70" class="md-primary" md-mode="determinate" value="<% dest.matchrate.total | number:0 %>">
+                                                <span ng-if="dest.matchrate.total" class="matchperccontainer" layout="column" layout-align="center center">
+                                                    <p class="matchperctext"><% dest.matchrate.total | number:0 %>%</p>
+                                                    <span class="matchperctext">Match</span>
+                                                        <md-progress-circular md-diameter="70" style="margin-top:-40px;" class="md-primary" md-mode="determinate" value="<% dest.matchrate.total | number:0 %>">
                                                 </span>
                                          </md-card-content>
                                         </md-card>
@@ -151,15 +157,15 @@
                                        <md-button class="md-primary"  ng-click="showAdvanced(dest)">
                                        <md-card >
                                              <img class="dest_img" src="<% dest.image %>" alt="">
-                                         <md-card-content style="width:100%;display:inline-block;" layout="row" >
-                                               <span style="margin-bottom:10px;margin-top:10px;display:inline-block;width:70%;" layout="column" layout-align="start center">
-                                                   <span style="display:block;"><% dest.name  %></span>
-                                                   <span style="display:block;">Vanaf <% dest.priceDetails.food + dest.priceDetails.hotel | currency:'€ ' %></span>
-                                                   <span> <% dest.matchrate.weather  %></span>
+                                         <md-card-content class="cardcontentcontainer" layout="row" >
+                                               <span layout="column" layout-align="center start">
+                                                   <span class="destinfospan"><% dest.name  %></span>
+                                                   <span class="destinfospan" >From <% dest.priceDetails.food + dest.priceDetails.hotel | currency:'€ ' %></span>
                                                 </span>
-                                                <span style="margin-bottom:10px;margin-top:10px;display:inline-block;width:25%;" layout="column" class="matchperc" layout-align="end center">
-                                                    <p class="matchperctext"><% dest.matchrate.total | number:0 %>% match</p>
-                                                        <md-progress-circular md-diameter="70" class="md-primary" md-mode="determinate" value="<% dest.matchrate.total | number:0 %>">
+                                                <span ng-if="dest.matchrate.total" class="matchperccontainer" layout="column" layout-align="center center">
+                                                    <p class="matchperctext"><% dest.matchrate.total | number:0 %>%</p>
+                                                    <span class="matchperctext">Match</span>
+                                                        <md-progress-circular md-diameter="70" style="margin-top:-40px;" class="md-primary" md-mode="determinate" value="<% dest.matchrate.total | number:0 %>">
                                                 </span>
                                          </md-card-content>
                                         </md-card>
@@ -174,18 +180,23 @@
                         <md-item ng-repeat="dest in flydestinations">
                           
                             <md-item-content>
-                               <md-button class="md-primary"  ng-click="showAdvanced(dest)">
-                               <md-card >
-                                     <img class="dest_img" src="<% dest.image %>" alt="">
-                                 <md-card-content style="width:100%;display:inline-block;" layout="row" >
-                                       <span style="margin-bottom:10px;margin-top:10px;display:inline-block;width:70%;" layout="column" layout-align="start center">
-                                           <span style="display:block;"><% dest.name  %></span>
-                                           <span style="display:block;">Vanaf <% dest.priceDetails.food + dest.priceDetails.hotel | currency:'€ ' %></span>
-                                        </span>
-                                 </md-card-content>
-                                </md-card>
-                                </md-button>
-                            </md-item-content>
+                                       <md-button class="md-primary"  ng-click="showAdvanced(dest)">
+                                       <md-card >
+                                             <img class="dest_img" src="<% dest.image %>" alt="">
+                                         <md-card-content class="cardcontentcontainer" layout="row" >
+                                               <span layout="column" layout-align="center start">
+                                                   <span class="destinfospan"><% dest.name  %></span>
+                                                   <span class="destinfospan" >From <% dest.priceDetails.food + dest.priceDetails.hotel | currency:'€ ' %></span>
+                                                </span>
+                                                <span ng-if="dest.matchrate.total" class="matchperccontainer" layout="column" layout-align="center center">
+                                                    <p class="matchperctext"><% dest.matchrate.total | number:0 %>%</p>
+                                                    <span class="matchperctext">Match</span>
+                                                        <md-progress-circular md-diameter="70" style="margin-top:-40px;" class="md-primary" md-mode="determinate" value="<% dest.matchrate.total | number:0 %>">
+                                                </span>
+                                         </md-card-content>
+                                        </md-card>
+                                        </md-button>
+                                    </md-item-content>
                         </md-item>
                     </md-list>
                         </div>
@@ -195,18 +206,23 @@
                         <md-item ng-repeat="dest in cardestinations">
                           
                             <md-item-content>
-                            <md-button class="md-primary"  ng-click="showAdvanced(dest)">
-                               <md-card >
-                                     <img class="dest_img" src="<% dest.image %>" alt="">
-                                 <md-card-content style="width:100%;display:inline-block;" layout="row" >
-                                       <span style="margin-bottom:10px;margin-top:10px;display:inline-block;width:70%;" layout="column" layout-align="start center">
-                                           <span style="display:block;"><% dest.name  %></span>
-                                           <span style="display:block;">Vanaf <% dest.priceDetails.food + dest.priceDetails.hotel | currency:'€ ' %></span>
-                                        </span>
-                                 </md-card-content>
-                                </md-card>
-                                </md-button>
-                            </md-item-content>
+                                       <md-button class="md-primary"  ng-click="showAdvanced(dest)">
+                                       <md-card >
+                                             <img class="dest_img" src="<% dest.image %>" alt="">
+                                         <md-card-content class="cardcontentcontainer" layout="row" >
+                                               <span layout="column" layout-align="center start">
+                                                   <span class="destinfospan"><% dest.name  %></span>
+                                                   <span class="destinfospan" >From <% dest.priceDetails.food + dest.priceDetails.hotel | currency:'€ ' %></span>
+                                                </span>
+                                                <span ng-if="dest.matchrate.total" class="matchperccontainer" layout="column" layout-align="center center">
+                                                    <p class="matchperctext"><% dest.matchrate.total | number:0 %>%</p>
+                                                    <span class="matchperctext">Match</span>
+                                                        <md-progress-circular md-diameter="70" style="margin-top:-40px;" class="md-primary" md-mode="determinate" value="<% dest.matchrate.total | number:0 %>">
+                                                </span>
+                                         </md-card-content>
+                                        </md-card>
+                                        </md-button>
+                                    </md-item-content>
                         </md-item>
                     </md-list>
                         </div>

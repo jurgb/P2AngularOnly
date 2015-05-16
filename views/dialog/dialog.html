@@ -11,7 +11,7 @@
     <div layout="column" layout-fill>
         <div layout-margin layout-padding layout-sm="column" layout="row">
             <img flex-gt-sm="33" src="<% item.image %>" alt="Picture of <% item.name %>">
-            <div flex-gt-sm layout="column">
+            <div flex-gt-sm layout-margin layout-padding layout="column">
                 <span layout="row">
                     <h2><% item.name %></h2>&nbsp;
                     <h4>(<% item.region %>)</h4>
@@ -24,7 +24,8 @@
         <div layout-margin layout-fill layout-sm="column" layout="row">
             <span class="destdetailspan"  layout-padding flex layout="column">
                 <h4>Distance</h4>
-                <span><% item.distance.miles %> miles (~<% item.distance.miles * 1.609344 |number:0 %> km)</span>
+                <span><% item.distance.miles %> miles</span>
+                <span>(~<% item.distance.miles * 1.609344 |number:0 %> km)</span>
             </span>
             <span class="destdetailspan"  layout-padding flex layout="column">
                 <h4>Currency</h4>
@@ -41,8 +42,8 @@
             </span>
             <span class="destdetailspan"  layout-padding flex layout="column">
                 <h4>Price</h4>
-                <span> flight (<% item.priceDetails.flight | currency:'€ ' %>)</span>
-                <span> Stay ( <% item.priceDetails.food + item.priceDetails.hotel | currency:'€ ' %>)</span>
+                <span> flight: <% item.priceDetails.flight | currency:'€ ' %></span>
+                <span> Stay:  <% item.priceDetails.food + item.priceDetails.hotel | currency:'€ ' %></span>
             </span>
         </div>
     </div>

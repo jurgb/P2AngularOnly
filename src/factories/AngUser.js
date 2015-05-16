@@ -17,7 +17,7 @@ app.factory('user', function() {
             traintravel:false,
             boattravel:true
         },
-        selectedActivities:[1]
+        selectedActivities:[1,48,131,10,129,117,12,68,111]
         
 };
         return {
