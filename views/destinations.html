@@ -92,6 +92,7 @@
                     <div layout="column" style="margin-top:20px;margin-bottom:20px;" layout-align="center center">
                         <h2 style="text-align:center; margin-bottom: 50px;"><% selectedVacType.name %></h2>
                         <md-progress-circular ng-show="loading" md-diameter="20" id="loadgif" class="md-primary" md-mode="indeterminate"></md-progress-circular>
+                        <span layout-margin layout-padding ng-show="noresultsfound" class="feedbackinfo">No results found, please change your trip settings!</span>
                     </div>
                    
                     

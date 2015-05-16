@@ -273,3 +273,6 @@ md-select-menu.md-default-theme md-option[selected]{
 md-toolbar.md-default-theme{
     background-color: #fff;   
 }
+.feedbackinfo{
+    background-color: rgba(72,190,188,0.4);
+}

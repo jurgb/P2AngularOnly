@@ -6,6 +6,7 @@ app.controller("AngMpdController", function($scope, APIservice, $mdSidenav, $mdD
 $scope.loading = false;
 $scope.showerror = false;
 $scope.error = null;
+$scope.noresultsfound = false;
 //*******************
 // INIT ALL ARRAYS
 //******************* 
@@ -239,24 +240,26 @@ $scope.activitycat = function(){
 
     $scope.cardestinations = function(){
         console.log($scope.tripsettings);
+        $scope.noresultsfound = false;
       //Alle notifications binnehalen en in scope stoppen
         params = {'UxplrSearch[departurePoint]':$scope.user.departurepoint,'UxplrSearch[dateFrom]':$scope.tripsettings.departurestring,'UxplrSearch[dateTo]':$scope.tripsettings.returnstring, 'UxplrSearch[requiredActivities]':'','UxplrSearch[optionalActivities]':$scope.user.selectedActivities, 'UxplrSearch[budget]': $scope.tripsettings.budget, 'UxplrSearch[sort]':'matchrate','UxplrSearch[sortOrder]':'desc', 'UxplrSearch[currency]':'EUR'};
 		APIservice.destinations(params)
 			.success(function(data){
                 
 				$scope.cardestinations = data;
-
                 console.log(data);
                 $scope.loading = false;
                 
 			})
             .error(function(){
+                $scope.noresultsfound = true;
                 console.log("fail");
                 $scope.loading = false;
         });
     };
     
     $scope.skidestinations = function(){
+        $scope.noresultsfound = false;
       //Alle notifications binnehalen en in scope stoppen
         params =
 {'UxplrSearch[departurePoint]':$scope.user.departurepoint,'UxplrSearch[dateFrom]':$scope.tripsettings.departurestring,'UxplrSearch[dateTo]':$scope.tripsettings.returnstring, 'UxplrSearch[requiredActivities]':'','UxplrSearch[optionalActivities]':$scope.user.selectedActivities, 'UxplrSearch[budget]': $scope.tripsettings.budget, 'UxplrSearch[sort]':'matchrate','UxplrSearch[sortOrder]':'desc','UxplrSearch[temperature]':'{"0":{"min":"cold","max":"cool"}}','UxplrSearch[requiredActivities]':'112', 'UxplrSearch[currency]':'EUR'};
@@ -270,11 +273,13 @@ $scope.activitycat = function(){
                 
 			})
             .error(function(){
+                $scope.noresultsfound = true;
                 console.log("fail");
                 $scope.loading = false;
             });
     };
     $scope.sundestinations = function(){
+        $scope.noresultsfound = false;
       //Alle notifications binnehalen en in scope stoppen
         params =
 {'UxplrSearch[departurePoint]':$scope.user.departurepoint,'UxplrSearch[dateFrom]':$scope.tripsettings.departurestring,'UxplrSearch[dateTo]':$scope.tripsettings.returnstring, 'UxplrSearch[requiredActivities]':'','UxplrSearch[optionalActivities]':$scope.user.selectedActivities, 'UxplrSearch[budget]': $scope.tripsettings.budget, 'UxplrSearch[sort]':'matchrate','UxplrSearch[sortOrder]':'desc','UxplrSearch[temperature]':'{"0":{"min":"warm","max":"hot"}}', 'UxplrSearch[currency]':'EUR'};
@@ -288,11 +293,13 @@ $scope.activitycat = function(){
                 
 			})
             .error(function(){
+                $scope.noresultsfound = true;
                 console.log("fail");
                 $scope.loading = false;
         });
     };
         $scope.flydestinations = function(){
+            $scope.noresultsfound = false;
       //Alle notifications binnehalen en in scope stoppen
         params =
 {'UxplrSearch[departurePoint]':$scope.user.departurepoint,'UxplrSearch[dateFrom]':$scope.tripsettings.departurestring,'UxplrSearch[dateTo]':$scope.tripsettings.returnstring, 'UxplrSearch[requiredActivities]':'','UxplrSearch[optionalActivities]':$scope.user.selectedActivities, 'UxplrSearch[budget]': $scope.tripsettings.budget, 'UxplrSearch[sort]':'matchrate','UxplrSearch[sortOrder]':'desc', 'UxplrSearch[currency]':'EUR'};
@@ -306,6 +313,7 @@ $scope.activitycat = function(){
                 
 			})
             .error(function(){
+                $scope.noresultsfound = true;
                 console.log("fail");
                 $scope.loading = false;
         });
