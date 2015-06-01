@@ -94,7 +94,45 @@
                         <md-progress-circular ng-show="loading" md-diameter="20" id="loadgif" class="md-primary" md-mode="indeterminate"></md-progress-circular>
                         <span layout-margin layout-padding ng-show="noresultsfound" class="feedbackinfo">No results found, please change your trip settings!</span>
                     </div>
-                   
+                    <div ng-if="selectedVacType.selector" layout="column" layout-align="start center" >
+                        <p class="feedbackinfo" hide show-gt-sm>Note: To change it later use the menu on the left side</p>
+                        <p class="feedbackinfo" hide-gt-sm >Note: To change it later use the menu by clicking the logo</p>
+                        <md-list layout-gt-md="row" layout-sm="column" class="categorie-list">
+                          <md-item ng-if="user.travel.cartravel">
+                                    <md-item-content>
+                                        <md-button ng-click="selectVacType(1)" ng-class="{'selected' : vacationtypes[1] === selectedVacType }">
+                                            <img ng-src="./assets/images/icons/car.svg" class="face" alt="">
+                                            Car vacation
+                                        </md-button>
+                                    </md-item-content>
+                            </md-item>
+                           <md-item>
+                                    <md-item-content>
+                                        <md-button ng-click="selectVacType(2)" ng-class="{'selected' : vacationtypes[2] === selectedVacType }">
+                                            <img ng-src="./assets/images/icons/ski.svg" class="face" alt="">
+                                            Ski vacation
+                                        </md-button>
+                                    </md-item-content>
+                            </md-item>
+                            <md-item>
+                                    <md-item-content>
+                                        <md-button ng-click="selectVacType(3)" ng-class="{'selected' : vacationtypes[3] === selectedVacType }">
+                                            <img ng-src="./assets/images/icons/sun.svg" class="face" alt="">
+                                            Sun vacation
+                                        </md-button>
+                                    </md-item-content>
+                            </md-item>
+                            <md-item ng-if="user.travel.airtravel">
+                                    <md-item-content>
+                                        <md-button ng-click="selectVacType(4)" ng-class="{'selected' : vacationtypes[4] === selectedVacType }">
+                                            <img ng-src="./assets/images/icons/plane.svg" class="face" alt="">
+                                            Fly vacation
+                                        </md-button>
+                                    </md-item-content>
+                            </md-item>
+
+                        </md-list>
+                    </div>
                     
                     <div ng-switch="selectedVacType.id">
                     <div layout="row" ng-switch-when="1" layout-wrap>

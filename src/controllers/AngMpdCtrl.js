@@ -148,7 +148,8 @@ function selectUsertab(muppet) {
 //*******************     
 $scope.vacationtypes = [{
       id:'1',
-      name: 'Select your vacationtype'
+      name: 'Select your vacationtype',
+    selector:true
   },{
       id:'2',
       name: 'Car vacations',

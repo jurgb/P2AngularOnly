@@ -5,16 +5,16 @@ var app = angular.module('MPDapp', ['ngMaterial', 'ngRoute', "checklist-model"],
 app.config(function($routeProvider, $mdThemingProvider ) {
 
     $routeProvider
-        .when('/',
-            {
-                controller: 'AngMpdController',
-                templateUrl: './views/login.html'
-            })
-        .when('/signup',
-            {
-                controller: 'AngMpdController',
-                templateUrl: './views/signup.html'
-            })
+//        .when('/',
+//            {
+//                controller: 'AngMpdController',
+//                templateUrl: './views/login.html'
+//            })
+//        .when('/signup',
+//            {
+//                controller: 'AngMpdController',
+//                templateUrl: './views/signup.html'
+//            })
         .when('/trip',
             {
                 controller: 'AngMpdController',
@@ -41,6 +41,9 @@ app.config(function($routeProvider, $mdThemingProvider ) {
                 controller: 'AngMpdController',
                 templateUrl: './views/book.html'
             })
+        .otherwise({
+        redirectTo: '/profile'
+      });
     
      $mdThemingProvider.definePalette('mpdPalette', {
         '50': '48bebc', // blue color (accent)
